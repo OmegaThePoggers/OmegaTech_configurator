@@ -1,0 +1,42 @@
+{
+  "rules": [
+    {
+      "id": "cpu_motherboard_socket",
+      "type": "match_attribute",
+      "components": ["CPU", "Motherboard"],
+      "attribute": "socket",
+      "message": "CPU and Motherboard sockets must match."
+    },
+    {
+      "id": "ram_motherboard_type",
+      "type": "match_attribute",
+      "components": ["RAM", "Motherboard"],
+      "attribute": "type",
+      "message": "RAM and Motherboard RAM types must match."
+    },
+    {
+      "id": "psu_wattage_sufficient",
+      "type": "min_sum",
+      "components": ["PSU", "CPU", "GPU"],
+      "attribute": "power_draw",
+      "threshold_attribute": "wattage",
+      "message": "PSU wattage is insufficient for selected components."
+    },
+    {
+      "id": "gpu_case_length",
+      "type": "max_attribute",
+      "components": ["GPU", "Case"],
+      "attribute": "length_mm",
+      "threshold_attribute": "gpu_length_max_mm",
+      "message": "GPU is too long for the selected case."
+    },
+    {
+      "id": "case_motherboard_form_factor",
+      "type": "includes_attribute",
+      "components": ["Case", "Motherboard"],
+      "attribute": "form_factor",
+      "threshold_attribute": "form_factor_support",
+      "message": "Case does not support the Motherboard's form factor."
+    }
+  ]
+}
