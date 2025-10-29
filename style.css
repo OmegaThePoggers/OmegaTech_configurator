@@ -1,0 +1,76 @@
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #00ffff !important;
+}
+
+.nav-link {
+    color: #fff !important;
+    transition: color 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ff00ff !important;
+}
+
+.hero-section {
+    padding: 100px 0;
+}
+
+.hero-section h1 {
+    color: #00ffff;
+}
+
+.btn-primary {
+    background-color: #00ffff;
+    border-color: #00ffff;
+    color: #000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #ff00ff;
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+.card {
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.form-control {
+    background-color: #333;
+    border: 1px solid #00ffff;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: #444;
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+    color: #fff;
+}
+
+#component-options .card {
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    position: sticky;
+    top: 20px;
+}

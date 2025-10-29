@@ -1,0 +1,54 @@
+[
+    {
+        "CPU": {
+            "name": "Intel Core i7-13700K",
+            "price": 400
+        },
+        "GPU": {
+            "name": "AMD RX 7700 XT",
+            "price": 480
+        },
+        "RAM": {
+            "name": "Kingston Fury 16GB DDR4",
+            "price": 70
+        },
+        "Storage": {
+            "name": "Crucial P5 Plus 1TB",
+            "price": 90
+        },
+        "PSU": {
+            "name": "BeQuiet Pure Power 700W",
+            "price": 110
+        },
+        "Case": {
+            "name": "Lian Li Lancool II Mesh",
+            "price": 120
+        }
+    },
+    {
+        "CPU": {
+            "name": "Intel Core i5-13600K",
+            "price": 280
+        },
+        "GPU": {
+            "name": "NVIDIA RTX 4060 Ti",
+            "price": 400
+        },
+        "RAM": {
+            "name": "G.Skill Trident Z 32GB DDR5",
+            "price": 180
+        },
+        "Storage": {
+            "name": "Crucial P5 Plus 1TB",
+            "price": 90
+        },
+        "PSU": {
+            "name": "BeQuiet Pure Power 700W",
+            "price": 110
+        },
+        "Case": {
+            "name": "Cooler Master TD500",
+            "price": 130
+        }
+    }
+]
