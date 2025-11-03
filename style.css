@@ -459,8 +459,6 @@ body.configurator-body {
     flex: 3; /* 75% width */
     padding: 1rem;
     overflow-y: auto; /* Allows this panel to scroll if content overflows */
-    display: flex;
-    flex-direction: column;
 }
 
 .configurator-right-panel {

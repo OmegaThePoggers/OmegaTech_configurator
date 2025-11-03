@@ -1,0 +1,49 @@
+.random-builds-container {
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+.random-build-card {
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.random-build-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.random-build-title {
+    color: #00aaff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.random-build-spec {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.random-build-spec:last-child {
+    border-bottom: none;
+}
+
+.random-build-spec span {
+    color: #e0e0e0;
+}
+
+.random-build-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #00ff00;
+    margin-top: 1rem;
+    text-align: right;
+}

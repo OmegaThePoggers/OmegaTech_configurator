@@ -270,70 +270,34 @@ document.addEventListener("DOMContentLoaded", function () {
     savedBuilds.push(build);
     localStorage.setItem("savedBuilds", JSON.stringify(savedBuilds));
     alert("Build saved successfully!");
-    updateCompareModal();
+    updateSummaryModal(build.components, build.totalCost);
   }
 
-  // Update compare modal with saved builds
-  function updateCompareModal() {
-    const build1 = document.getElementById("build1");
-    const build2 = document.getElementById("build2");
+  // Update summary modal with current build
+  function updateSummaryModal(build, cost) {
+    const summaryModalContent = document.getElementById(
+      "summary-modal-content",
+    );
 
-    const createBuildSelector = (containerId) => {
-      const container = document.getElementById(containerId);
-      container.innerHTML = `
-        <select class="form-select mb-3 build-selector bg-dark text-light">
-          <option value="" class="bg-dark text-light">Select a build to compare</option>
-          ${savedBuilds
-            .map(
-              (build, index) => `
-            <option value="${index}" class="bg-dark text-light">${build.name} ($${build.totalCost.toFixed(2)})</option>
-          `,
-            )
-            .join("")}
-        </select>
-        <div class="build-details"></div>
+    let html = "";
+    for (const [category, item] of Object.entries(build)) {
+      html += `
+        <div class="d-flex justify-content-between mb-2">
+          <span>${category}:</span>
+          <span>${item.name}</span>
+        </div>
       `;
+    }
 
-      const selector = container.querySelector(".build-selector");
-      selector.addEventListener("change", (e) => {
-        const buildIndex = e.target.value;
-        if (buildIndex === "") {
-          container.querySelector(".build-details").innerHTML = "";
-          return;
-        }
+    html += `
+      <hr>
+      <div class="d-flex justify-content-between">
+        <h5>Total Cost:</h5>
+        <h5>$${cost}</h5>
+      </div>
+    `;
 
-        const build = savedBuilds[buildIndex];
-        const details = container.querySelector(".build-details");
-        details.innerHTML = `
-          <div class="card bg-dark text-white">
-            <div class="card-body">
-              <h5 class="card-title text-primary">${build.name}</h5>
-              <p class="text-light opacity-75">Built on: ${new Date(build.date).toLocaleDateString()}</p>
-              <div class="mb-3 text-light">
-                <strong class="text-primary">Performance Score:</strong> ${build.performanceScore}
-              </div>
-              <div class="mb-3 text-light">
-                <strong class="text-primary">Total Cost:</strong> ₹${build.totalCost.toLocaleString("en-IN")}
-              </div>
-              <h6 class="text-primary">Components:</h6>
-              ${Object.entries(build.components)
-                .map(
-                  ([category, item]) => `
-                <div class="d-flex justify-content-between mb-2 text-light">
-                  <span>${category}:</span>
-                  <span>${item.name}</span>
-                </div>
-              `,
-                )
-                .join("")}
-            </div>
-          </div>
-        `;
-      });
-    };
-
-    createBuildSelector("build1");
-    createBuildSelector("build2");
+    summaryModalContent.innerHTML = html;
   }
 
   // Update performance chart
@@ -501,36 +465,49 @@ document.addEventListener("DOMContentLoaded", function () {
     saveCurrentBuild();
   });
 
-  // Handle compare builds
-  document
-    .getElementById("compare-builds")
-    .addEventListener("click", function () {
-      updateCompareModal();
-      new bootstrap.Modal(document.getElementById("compareModal")).show();
-    });
-
   // Handle random build
   document
     .getElementById("random-build")
     .addEventListener("click", function () {
-      selectedComponents = {};
+      const randomBuild = {};
+      let randomTotalCost = 0;
+
       Object.entries(components.categories).forEach(([category, items]) => {
         const randomIndex = Math.floor(Math.random() * items.length);
         const randomItem = items[randomIndex];
-        selectedComponents[category] = {
+        randomBuild[category] = {
           name: randomItem.name,
           price: randomItem.price,
         };
-        const select = document.querySelector(
-          `select[data-category="${category}"]`,
-        );
-        if (select) {
-          select.value = randomItem.name;
-        }
+        randomTotalCost += randomItem.price;
       });
-      updateSummary();
-      updateBuildProgress();
-      updateButtonStates();
+
+      updateSummaryModal(randomBuild, randomTotalCost);
+
+      const summaryModal = new bootstrap.Modal(
+        document.getElementById("summaryModal"),
+      );
+      summaryModal.show();
+    });
+
+  // Handle export comparison
+  document
+    .getElementById("export-comparison")
+    .addEventListener("click", function () {
+      const summaryModalContent = document
+        .getElementById("summary-modal-content")
+        .cloneNode(true);
+      summaryModalContent.style.padding = "20px";
+
+      const opt = {
+        margin: 1,
+        filename: "pc-comparison.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+
+      html2pdf().set(opt).from(summaryModalContent).save();
     });
 
   // Handle clear build
@@ -542,27 +519,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const selects = document.querySelectorAll(".component-select");
     selects.forEach((select) => {
       select.value = "";
-    });
-  });
-
-  // Handle share link
-  const shareButton = document.getElementById("share-link");
-  const copyButton = document.getElementById("copy-link");
-  let shareableLink = "";
-
-  shareButton.addEventListener("click", function () {
-    const configData = encodeURIComponent(JSON.stringify(selectedComponents));
-    shareableLink = `${window.location.origin}${window.location.pathname}?config=${configData}`;
-
-    copyButton.classList.remove("d-none");
-    shareButton.classList.add("d-none");
-  });
-
-  copyButton.addEventListener("click", function () {
-    navigator.clipboard.writeText(shareableLink).then(() => {
-      alert("Configuration link copied to clipboard!");
-      copyButton.classList.add("d-none");
-      shareButton.classList.remove("d-none");
     });
   });
 });

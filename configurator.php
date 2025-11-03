@@ -126,11 +126,10 @@
                             <small class="text-muted opacity-75">* Estimates based on component specifications</small>
                         </div>
                     </div>
-                    <div class="action-buttons mt-auto">
+                      <div class="action-buttons mt-auto">
                         <button id="save-config" class="btn btn-primary w-100 mb-2 disabled" disabled>Save Configuration</button>
-                        <button id="compare-builds" class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Compare saved builds">Compare Builds</button>
-                        <button id="clear-build" class="btn btn-outline-danger w-100 mb-2">Clear Build</button>
                         <button id="random-build" class="btn btn-outline-warning w-100 mb-2">Random Build</button>
+                        <button id="clear-build" class="btn btn-outline-danger w-100 mb-2">Clear Build</button>
                         <div class="share-buttons d-flex justify-content-between mb-2">
                             <button id="share-link" class="btn btn-outline-info flex-grow-1 me-2">
                                 <i class="bi bi-link-45deg"></i> Share
@@ -151,31 +150,15 @@
 
 
     <!-- Build Comparison Modal -->
-    <div class="modal fade" id="compareModal" tabindex="-1">
+    <div class="modal fade" id="summaryModal" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content bg-dark">
                 <div class="modal-header border-secondary">
-                    <h5 class="modal-title text-light">Compare Builds</h5>
+                    <h5 class="modal-title text-light">Configuration Summary</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6" id="build1">
-                            <h6 class="mb-3 text-primary">Build 1</h6>
-                            <div class="build-content text-light"></div>
-                        </div>
-                        <div class="col-md-6" id="build2">
-                            <h6 class="mb-3 text-primary">Build 2</h6>
-                            <div class="build-content text-light"></div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="comparison-chart">
-                                <canvas id="comparisonChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="summary-modal-content"></div>
                 </div>
                 <div class="modal-footer border-secondary">
                     <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
