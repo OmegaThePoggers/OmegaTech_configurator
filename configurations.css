@@ -1,0 +1,35 @@
+.build-card {
+    background-color: #1e1e1e;
+    border: 1px solid #00ffff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.build-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+}
+
+.build-card h5 {
+    color: #00ffff;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.build-card .badge {
+    font-size: 0.9rem;
+}
+
+.component-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.component-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+}

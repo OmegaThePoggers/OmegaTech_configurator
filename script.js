@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Create component selection interface
   function createComponentSelectors() {
     const container = document.getElementById("component-options");
+    container.innerHTML = "";
     Object.entries(components.categories).forEach(([category, items]) => {
       const card = document.createElement("div");
       card.className = "card bg-dark mb-3";
@@ -417,8 +418,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (value) {
         selectedComponents[category] = { name: value, price: price };
+        if (window.updateComponentColor) {
+          let color = "#ffffff"; // Default color
+          switch (category.toLowerCase()) {
+            case "case":
+              color = "#2a2a2a";
+              break;
+            case "motherboard":
+              color = "#006666";
+              break;
+            case "cpu":
+              color = "#00aaaa";
+              break;
+            case "ram":
+              color = "#00cccc";
+              break;
+            case "gpu":
+              color = "#008888";
+              break;
+            case "psu":
+              color = "#333333";
+              break;
+            case "storage":
+              color = "#555555";
+              break;
+          }
+          window.updateComponentColor(category.toLowerCase(), color);
+          window.updateComponentVisibility(category.toLowerCase(), true);
+        }
       } else {
         delete selectedComponents[category];
+        if (window.updateComponentVisibility) {
+          window.updateComponentVisibility(category.toLowerCase(), false);
+        }
       }
 
       updateSummary();
@@ -477,41 +509,60 @@ document.addEventListener("DOMContentLoaded", function () {
       new bootstrap.Modal(document.getElementById("compareModal")).show();
     });
 
-  // Handle share link
-  document.getElementById("share-link").addEventListener("click", function () {
-    const configData = encodeURIComponent(JSON.stringify(selectedComponents));
-    const url = `${window.location.origin}${window.location.pathname}?config=${configData}`;
+  // Handle random build
+  document
+    .getElementById("random-build")
+    .addEventListener("click", function () {
+      selectedComponents = {};
+      Object.entries(components.categories).forEach(([category, items]) => {
+        const randomIndex = Math.floor(Math.random() * items.length);
+        const randomItem = items[randomIndex];
+        selectedComponents[category] = {
+          name: randomItem.name,
+          price: randomItem.price,
+        };
+        const select = document.querySelector(
+          `select[data-category="${category}"]`,
+        );
+        if (select) {
+          select.value = randomItem.name;
+        }
+      });
+      updateSummary();
+      updateBuildProgress();
+      updateButtonStates();
+    });
 
-    navigator.clipboard.writeText(url).then(() => {
-      alert("Configuration link copied to clipboard!");
+  // Handle clear build
+  document.getElementById("clear-build").addEventListener("click", function () {
+    selectedComponents = {};
+    updateSummary();
+    updateBuildProgress();
+    updateButtonStates();
+    const selects = document.querySelectorAll(".component-select");
+    selects.forEach((select) => {
+      select.value = "";
     });
   });
 
-  // Load configuration from URL if present
-  const urlParams = new URLSearchParams(window.location.search);
-  const configParam = urlParams.get("config");
-  if (configParam) {
-    try {
-      const loadedConfig = JSON.parse(decodeURIComponent(configParam));
-      selectedComponents = loadedConfig;
-      // Wait for components to load before updating selectors
-      const checkInterval = setInterval(() => {
-        if (Object.keys(components).length > 0) {
-          Object.entries(loadedConfig).forEach(([category, item]) => {
-            const select = document.querySelector(
-              `select[data-category="${category}"]`,
-            );
-            if (select) {
-              select.value = item.name;
-            }
-          });
-          updateSummary();
-          updateBuildProgress();
-          clearInterval(checkInterval);
-        }
-      }, 100);
-    } catch (e) {
-      console.error("Error loading configuration from URL:", e);
-    }
-  }
+  // Handle share link
+  const shareButton = document.getElementById("share-link");
+  const copyButton = document.getElementById("copy-link");
+  let shareableLink = "";
+
+  shareButton.addEventListener("click", function () {
+    const configData = encodeURIComponent(JSON.stringify(selectedComponents));
+    shareableLink = `${window.location.origin}${window.location.pathname}?config=${configData}`;
+
+    copyButton.classList.remove("d-none");
+    shareButton.classList.add("d-none");
+  });
+
+  copyButton.addEventListener("click", function () {
+    navigator.clipboard.writeText(shareableLink).then(() => {
+      alert("Configuration link copied to clipboard!");
+      copyButton.classList.add("d-none");
+      shareButton.classList.remove("d-none");
+    });
+  });
 });

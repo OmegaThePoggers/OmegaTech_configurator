@@ -1,49 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmegaTech PC Configurator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">OmegaTech</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="configurator.php">Configurator</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>OmegaTech PC Configurator</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono&family=Open+Sans&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">OmegaTech</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a
+                                class="nav-link active"
+                                aria-current="page"
+                                href="index.html"
+                                >Home</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="configurator.php"
+                                >Configurator</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="configurations.html"
+                                >Saved Builds</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <main class="container text-center mt-5">
-        <div class="hero-section">
-            <h1 class="display-3">OmegaTech PC Configurator</h1>
-            <p class="lead">Build your dream gaming PC with ease.</p>
-            <a href="configurator.php" class="btn btn-primary btn-lg mt-3">Start Building</a>
-        </div>
-    </main>
+        <main class="container mt-5">
+            <div class="hero-section text-center">
+                <h1 class="display-3 animated-glow">
+                    OmegaTech PC Configurator
+                </h1>
+                <p class="lead">
+                    Build your dream gaming PC with cutting-edge components and
+                    real-time compatibility checks.
+                </p>
+                <a href="configurator.php" class="btn btn-primary btn-lg mt-3"
+                    >Start Building</a
+                >
+            </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-</body>
+            <section id="features" class="mt-5 py-5">
+                <h2 class="text-center mb-4">Why Choose Us?</h2>
+                <div class="row">
+                    <div class="col-md-4 feature-card">
+                        <div class="card bg-dark text-white text-center p-3">
+                            <i
+                                class="bi bi-cpu-fill display-4 text-primary"
+                            ></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Expert Selection</h5>
+                                <p class="card-text">
+                                    Curated list of the latest and greatest PC
+                                    components.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 feature-card">
+                        <div class="card bg-dark text-white text-center p-3">
+                            <i
+                                class="bi bi-check-circle-fill display-4 text-success"
+                            ></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Live Compatibility</h5>
+                                <p class="card-text">
+                                    Instant feedback on component compatibility
+                                    to avoid issues.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 feature-card">
+                        <div class="card bg-dark text-white text-center p-3">
+                            <i
+                                class="bi bi-currency-dollar display-4 text-warning"
+                            ></i>
+                            <div class="card-body">
+                                <h5 class="card-title">Transparent Pricing</h5>
+                                <p class="card-text">
+                                    Real-time cost updates as you build your
+                                    dream machine.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="how-it-works" class="mt-5 py-5 bg-dark-2 rounded-3">
+                <h2 class="text-center mb-5">How It Works</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="step">
+                            <h4>1. Select Components</h4>
+                            <p>
+                                Choose from a wide range of CPUs, GPUs, RAM, and
+                                more. Our smart filters help you find the
+                                perfect parts.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <h4>2. Check Compatibility</h4>
+                            <p>
+                                Our system automatically verifies that your
+                                chosen components work together seamlessly.
+                            </p>
+                        </div>
+                        <div class="step">
+                            <h4>3. Save & Share</h4>
+                            <p>
+                                Save your build, get a shareable link, and even
+                                export a PDF summary of your configuration.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img
+                            src="https://via.placeholder.com/400"
+                            class="img-fluid rounded"
+                            alt="PC Build Diagram"
+                        />
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="home.js"></script>
+    </body>
 </html>
