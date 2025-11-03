@@ -1,0 +1,46 @@
+{
+  "categories": {
+    "CPU": [
+      { "name": "Intel Core i5-13600K", "price": 24858 },
+      { "name": "Intel Core i7-13700K", "price": 35512 },
+      { "name": "AMD Ryzen 5 7600X", "price": 22195 },
+      { "name": "AMD Ryzen 7 7800X3D", "price": 39951 },
+      { "name": "Intel Core i9-13900K", "price": 48829 }
+    ],
+    "GPU": [
+      { "name": "NVIDIA RTX 4060 Ti", "price": 35512 },
+      { "name": "NVIDIA RTX 4070", "price": 48829 },
+      { "name": "NVIDIA RTX 4080", "price": 88780 },
+      { "name": "AMD RX 7700 XT", "price": 42614 },
+      { "name": "AMD RX 7900 XT", "price": 75463 }
+    ],
+    "RAM": [
+      { "name": "Corsair Vengeance 16GB DDR5", "price": 8878 },
+      { "name": "G.Skill Trident Z 32GB DDR5", "price": 15980 },
+      { "name": "Kingston Fury 16GB DDR4", "price": 6215 },
+      { "name": "Crucial Ballistix 32GB DDR4", "price": 10654 },
+      { "name": "Team T-Force Delta RGB 32GB DDR5", "price": 14205 }
+    ],
+    "Storage": [
+      { "name": "Samsung 980 PRO 1TB NVMe SSD", "price": 10654 },
+      { "name": "WD Black SN850X 1TB", "price": 9766 },
+      { "name": "Crucial P5 Plus 1TB", "price": 7990 },
+      { "name": "Seagate Barracuda 2TB HDD", "price": 5327 },
+      { "name": "Samsung 990 PRO 2TB NVMe", "price": 15980 }
+    ],
+    "PSU": [
+      { "name": "Corsair RM750x 750W", "price": 10654 },
+      { "name": "Cooler Master MWE 650W", "price": 7990 },
+      { "name": "EVGA SuperNOVA 850W", "price": 11541 },
+      { "name": "Seasonic Focus GX-750", "price": 11098 },
+      { "name": "BeQuiet Pure Power 700W", "price": 9766 }
+    ],
+    "Case": [
+      { "name": "NZXT H510", "price": 7990 },
+      { "name": "Lian Li Lancool II Mesh", "price": 10654 },
+      { "name": "Cooler Master TD500", "price": 11541 },
+      { "name": "Corsair 4000D Airflow", "price": 9766 },
+      { "name": "Fractal Design Meshify 2", "price": 13317 }
+    ]
+  }
+}
