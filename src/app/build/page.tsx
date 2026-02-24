@@ -1,15 +1,108 @@
-import { Metadata } from 'next';
+'use client';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Monitor, CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2 } from 'lucide-react';
+import pcComponentsData from '@/data/pc-components.json';
+import { useState, useMemo } from 'react';
 
-export const metadata: Metadata = {
-    title: 'Build PC | OmegaTech Configurator',
-    description: 'Configure your custom PC build.',
-};
+// Types based on the JSON structure
+type ComponentStoreLink = { store: string; url: string };
+type ComponentItem = { name: string; price: number; purchaseLinks: ComponentStoreLink[] };
+type ComponentCategory = 'CPU' | 'GPU' | 'RAM' | 'Storage' | 'PSU' | 'Case';
+type SelectedComponentsState = Partial<Record<ComponentCategory, ComponentItem>>;
 
 export default function ConfiguratorPage() {
-    const categories = ['CPU', 'GPU', 'RAM', 'Storage', 'PSU', 'Case'];
+    const categories: ComponentCategory[] = ['CPU', 'GPU', 'RAM', 'Storage', 'PSU', 'Case'];
+    const [selectedComponents, setSelectedComponents] = useState<SelectedComponentsState>({});
+
+    const handleSelectComponent = (category: ComponentCategory, componentName: string) => {
+        if (!componentName) {
+            const newSelections = { ...selectedComponents };
+            delete newSelections[category];
+            setSelectedComponents(newSelections);
+            return;
+        }
+
+        const categoryItems = pcComponentsData.categories[category] as ComponentItem[];
+        const selectedItem = categoryItems.find(item => item.name === componentName);
+
+        if (selectedItem) {
+            setSelectedComponents(prev => ({
+                ...prev,
+                [category]: selectedItem
+            }));
+        }
+    };
+
+    const handleClearBuild = () => {
+        setSelectedComponents({});
+    };
+
+    const handleRandomizeBuild = () => {
+        const randomBuild: SelectedComponentsState = {};
+        categories.forEach(category => {
+            const items = pcComponentsData.categories[category] as ComponentItem[];
+            const randomItem = items[Math.floor(Math.random() * items.length)];
+            randomBuild[category] = randomItem;
+        });
+        setSelectedComponents(randomBuild);
+    };
+
+    const totalCost = useMemo(() => {
+        return Object.values(selectedComponents).reduce((acc, item) => acc + (item?.price || 0), 0);
+    }, [selectedComponents]);
+
+    const compatibilityWarnings = useMemo(() => {
+        const warnings: string[] = [];
+        const cpu = selectedComponents.CPU?.name;
+        const ram = selectedComponents.RAM?.name;
+        const gpu = selectedComponents.GPU?.name;
+        const psu = selectedComponents.PSU?.name;
+
+        // DDR4/DDR5 Logic
+        if (cpu && ram) {
+            const needsDDR5 = cpu.includes('13') || cpu.includes('7600X') || cpu.includes('7800X');
+            const isDDR4 = ram.toLowerCase().includes('ddr4');
+            if (needsDDR5 && isDDR4) {
+                warnings.push("Selected RAM is incompatible with CPU (DDR5 required).");
+            }
+        }
+
+        // PSU Wattage Logic for High-End GPUs
+        if (gpu && psu) {
+            const highEndGPUs = ['RTX 4080', 'RX 7900 XT'];
+            const psuWattageMatch = psu.match(/\d+/);
+            const psuWattage = psuWattageMatch ? parseInt(psuWattageMatch[0]) : 0;
+
+            if (highEndGPUs.some(model => gpu.includes(model)) && psuWattage < 750) {
+                warnings.push("PSU wattage may be insufficient for this GPU (750W+ recommended).");
+            }
+        }
+        return warnings;
+    }, [selectedComponents]);
+
+    const performanceScore = useMemo(() => {
+        if (!selectedComponents.CPU || !selectedComponents.GPU) return 0;
+
+        let score = 0;
+        const cpuName = selectedComponents.CPU.name;
+        const gpuName = selectedComponents.GPU.name;
+
+        if (cpuName.includes('i9')) score += 100;
+        else if (cpuName.includes('7800X')) score += 90;
+        else if (cpuName.includes('i7')) score += 85;
+        else if (cpuName.includes('7600X')) score += 75;
+        else if (cpuName.includes('i5')) score += 70;
+
+        if (gpuName.includes('4080')) score += 100;
+        else if (gpuName.includes('7900 XT')) score += 95;
+        else if (gpuName.includes('4070')) score += 80;
+        else if (gpuName.includes('7700 XT')) score += 75;
+        else if (gpuName.includes('4060')) score += 65;
+
+        return Math.round(score / 2);
+    }, [selectedComponents]);
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-7xl flex-grow">
@@ -42,11 +135,15 @@ export default function ConfiguratorPage() {
                                     <div className="w-full md:w-3/4">
                                         <select
                                             className="w-full h-10 px-3 bg-zinc-950 border border-zinc-700 rounded-md text-zinc-200 focus:outline-none focus:border-zinc-500 transition-colors"
-                                            defaultValue=""
+                                            value={selectedComponents[category]?.name || ""}
+                                            onChange={(e) => handleSelectComponent(category, e.target.value)}
                                         >
-                                            <option value="" disabled>Select {category}...</option>
-                                            <option value="test1">Placeholder Option 1 - ₹10,000</option>
-                                            <option value="test2">Placeholder Option 2 - ₹20,000</option>
+                                            <option value="">Select {category}...</option>
+                                            {(pcComponentsData.categories[category] as ComponentItem[]).map((item) => (
+                                                <option key={item.name} value={item.name}>
+                                                    {item.name} - ₹{item.price.toLocaleString("en-IN")}
+                                                </option>
+                                            ))}
                                         </select>
                                     </div>
                                 </CardContent>
@@ -70,17 +167,25 @@ export default function ConfiguratorPage() {
                             <CardContent>
                                 <div className="flex justify-between items-center text-sm mb-2">
                                     <span className="text-zinc-400">Compatibility:</span>
-                                    <span className="text-emerald-400 font-medium">100% Good</span>
+                                    <span className={`font-medium ${compatibilityWarnings.length > 0 ? 'text-amber-500' : 'text-emerald-400'}`}>
+                                        {compatibilityWarnings.length > 0 ? 'Issues Detected' : '100% Good'}
+                                    </span>
                                 </div>
-                                <div className="flex justify-between items-center text-sm">
+                                <div className="flex justify-between items-center text-sm mb-4">
                                     <span className="text-zinc-400">Performance Score:</span>
-                                    <span className="text-zinc-100 font-mono">0 / 100</span>
+                                    <span className="text-zinc-100 font-mono">{performanceScore} / 100</span>
                                 </div>
-                                {/* Warning Placeholder */}
-                                {/* <div className="mt-4 p-3 bg-amber-950/30 border border-amber-900/50 rounded-md flex gap-2 text-amber-500 text-sm">
-                  <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
-                  <span>Warning: Potential bottleneck.</span>
-                </div> */}
+
+                                {compatibilityWarnings.length > 0 && (
+                                    <div className="space-y-2">
+                                        {compatibilityWarnings.map((warning, idx) => (
+                                            <div key={idx} className="p-3 bg-amber-950/30 border border-amber-900/50 rounded-md flex gap-2 text-amber-500 text-sm">
+                                                <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                                                <span>{warning}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </CardContent>
                         </Card>
 
@@ -94,7 +199,9 @@ export default function ConfiguratorPage() {
                                     {categories.map((cat) => (
                                         <div key={cat} className="flex justify-between text-sm">
                                             <span className="text-zinc-500">{cat}:</span>
-                                            <span className="text-zinc-300">--</span>
+                                            <span className="text-zinc-300 text-right max-w-[200px] truncate" title={selectedComponents[cat]?.name || "--"}>
+                                                {selectedComponents[cat]?.name || "--"}
+                                            </span>
                                         </div>
                                     ))}
                                 </div>
@@ -103,7 +210,7 @@ export default function ConfiguratorPage() {
 
                                 <div className="flex justify-between items-center mb-6">
                                     <span className="text-lg font-medium">Total Cost:</span>
-                                    <span className="text-2xl font-bold font-mono">₹0</span>
+                                    <span className="text-2xl font-bold font-mono">₹{totalCost.toLocaleString('en-IN')}</span>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-2 mb-4">
@@ -118,11 +225,11 @@ export default function ConfiguratorPage() {
                                         <Download className="w-4 h-4 mr-2" />
                                         Export
                                     </Button>
-                                    <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800 text-amber-500 hover:text-amber-400" size="sm">
+                                    <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800 text-amber-500 hover:text-amber-400" size="sm" onClick={handleRandomizeBuild}>
                                         <RefreshCw className="w-4 h-4 mr-2" />
                                         Randomize
                                     </Button>
-                                    <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800 text-rose-500 hover:text-rose-400" size="sm">
+                                    <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800 text-rose-500 hover:text-rose-400" size="sm" onClick={handleClearBuild}>
                                         <Trash2 className="w-4 h-4 mr-2" />
                                         Clear
                                     </Button>
