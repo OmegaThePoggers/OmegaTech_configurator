@@ -1,6 +1,6 @@
 # ROADMAP.md
 
-> **Current Phase**: Not started
+> **Current Phase**: Phase 4
 > **Milestone**: v1.0 (Next.js Rewrite)
 
 ## Must-Haves (from SPEC)
@@ -9,6 +9,8 @@
 - [ ] Improved 3D Viewer
 - [x] Manual pricing with 3x Store Links
 - [ ] Simple backend (Firebase-ready)
+- [ ] Component filtering & browsing
+- [ ] Shopping cart system
 
 ## Phases
 
@@ -27,12 +29,17 @@
 **Objective**: Build the config engine, update component JSON with store links, and handle compatibility.
 **Requirements**: REQ-05, REQ-06, REQ-08
 
-### Phase 4: 3D Viewer Integration
+### Phase 4: Filtering & Shopping Cart
+**Status**: ⬜ Not Started
+**Objective**: Create a browsable component catalog with filtering (by brand, price, category) and a shopping cart system for adding/removing parts.
+**Requirements**: REQ-09, REQ-10
+
+### Phase 5: 3D Viewer Integration
 **Status**: ⬜ Not Started
 **Objective**: Port and optimize the Three.js viewer into a React component.
 **Requirements**: REQ-04
 
-### Phase 5: Backend & Polish
+### Phase 6: Backend & Polish
 **Status**: ⬜ Not Started
-**Objective**: Implement the simple local save feature and finalize UI/UX.
+**Objective**: Implement Firebase connectivity, the save feature, and finalize UI/UX.
 **Requirements**: REQ-07
