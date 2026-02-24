@@ -7,7 +7,7 @@
 - [x] Next.js framework base
 - [x] Dark tech minimalist UI
 - [ ] Improved 3D Viewer
-- [ ] Manual pricing with 3x Store Links
+- [x] Manual pricing with 3x Store Links
 - [ ] Simple backend (Firebase-ready)
 
 ## Phases
@@ -23,7 +23,7 @@
 **Requirements**: REQ-03
 
 ### Phase 3: Configurator Logic & Data
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Build the config engine, update component JSON with store links, and handle compatibility.
 **Requirements**: REQ-05, REQ-06, REQ-08
 
