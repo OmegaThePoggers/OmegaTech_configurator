@@ -4,8 +4,8 @@
 > **Milestone**: v1.0 (Next.js Rewrite)
 
 ## Must-Haves (from SPEC)
-- [ ] Next.js framework base
-- [ ] Dark tech minimalist UI
+- [x] Next.js framework base
+- [x] Dark tech minimalist UI
 - [ ] Improved 3D Viewer
 - [ ] Manual pricing with 3x Store Links
 - [ ] Simple backend (Firebase-ready)
@@ -13,7 +13,7 @@
 ## Phases
 
 ### Phase 1: Setup & Design System
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Scaffold the Next.js application and implement the core theme/layout.
 **Requirements**: REQ-01, REQ-02
 
