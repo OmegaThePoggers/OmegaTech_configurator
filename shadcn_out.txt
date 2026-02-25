@@ -1,0 +1,26 @@
+- Preflight checks.
+✔ Preflight checks.
+- Verifying framework.
+✔ Verifying framework. Found Next.js.
+- Validating Tailwind CSS config. Found v4.
+✔ Validating Tailwind CSS config. Found v4.
+- Validating import alias.
+✔ Validating import alias.
+- Writing components.json.
+✔ Writing components.json.
+- Checking registry.
+✔ Checking registry.
+- Updating CSS variables in src/app/globals.css
+✔ Updating CSS variables in src/app/globals.css
+- Updating src/app/globals.css
+✔ Updating src/app/globals.css
+- Installing dependencies.
+- Installing dependencies.
+✔ Installing dependencies.
+- Updating files.
+✔ Created 1 file:
+  - src/lib/utils.ts
+
+Success! Project initialization completed.
+You may now add components.
+

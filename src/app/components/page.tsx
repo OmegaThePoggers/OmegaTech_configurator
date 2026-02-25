@@ -3,8 +3,9 @@
 import { useState, useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Check } from 'lucide-react';
 import pcComponentsData from '@/data/pc-components.json';
+import { useCart } from '@/context/CartContext';
 
 // Types
 type ComponentStoreLink = { store: string; url: string };
@@ -58,6 +59,8 @@ const allCategories = Object.keys(pcComponentsData.categories);
 type SortOrder = 'price-asc' | 'price-desc' | 'name-asc';
 
 export default function ComponentsPage() {
+    const { addItem, isInCart } = useCart();
+
     // Filter state
     const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
         new Set(allCategories)
@@ -239,10 +242,14 @@ export default function ComponentsPage() {
                                         <Button
                                             variant="outline"
                                             size="sm"
-                                            className="w-full border-zinc-700 hover:bg-zinc-800 text-zinc-300"
+                                            className={`w-full border-zinc-700 ${isInCart(item.name) ? 'bg-emerald-950/30 border-emerald-800 text-emerald-400' : 'hover:bg-zinc-800 text-zinc-300'}`}
+                                            onClick={() => addItem({ name: item.name, price: item.price, category: item.category })}
                                         >
-                                            <ShoppingCart className="w-4 h-4 mr-2" />
-                                            Add to Cart
+                                            {isInCart(item.name) ? (
+                                                <><Check className="w-4 h-4 mr-2" />In Cart ✓</>
+                                            ) : (
+                                                <><ShoppingCart className="w-4 h-4 mr-2" />Add to Cart</>
+                                            )}
                                         </Button>
                                     </CardContent>
                                 </Card>
