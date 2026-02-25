@@ -2,9 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Monitor, CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2 } from 'lucide-react';
+import { Monitor, CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2, ShoppingCart, Check } from 'lucide-react';
 import pcComponentsData from '@/data/pc-components.json';
 import { useState, useMemo } from 'react';
+import { useCart } from '@/context/CartContext';
 
 // Types based on the JSON structure
 type ComponentStoreLink = { store: string; url: string };
@@ -15,6 +16,8 @@ type SelectedComponentsState = Partial<Record<ComponentCategory, ComponentItem>>
 export default function ConfiguratorPage() {
     const categories: ComponentCategory[] = ['CPU', 'GPU', 'RAM', 'Storage', 'PSU', 'Case'];
     const [selectedComponents, setSelectedComponents] = useState<SelectedComponentsState>({});
+    const [buildAdded, setBuildAdded] = useState(false);
+    const { addItem } = useCart();
 
     const handleSelectComponent = (category: ComponentCategory, componentName: string) => {
         if (!componentName) {
@@ -48,6 +51,20 @@ export default function ConfiguratorPage() {
         });
         setSelectedComponents(randomBuild);
     };
+
+    const handleAddBuildToCart = () => {
+        const selected = Object.entries(selectedComponents);
+        if (selected.length === 0) return;
+        selected.forEach(([category, item]) => {
+            if (item) {
+                addItem({ name: item.name, price: item.price, category });
+            }
+        });
+        setBuildAdded(true);
+        setTimeout(() => setBuildAdded(false), 2000);
+    };
+
+    const selectedCount = Object.keys(selectedComponents).length;
 
     const totalCost = useMemo(() => {
         return Object.values(selectedComponents).reduce((acc, item) => acc + (item?.price || 0), 0);
@@ -214,8 +231,19 @@ export default function ConfiguratorPage() {
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-2 mb-4">
-                                    <Button className="w-full bg-zinc-100 text-zinc-900 hover:bg-zinc-300 font-medium col-span-2">
-                                        Save Configuration
+                                    <Button
+                                        className={`w-full font-medium col-span-2 ${buildAdded
+                                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                                : 'bg-zinc-100 text-zinc-900 hover:bg-zinc-300'
+                                            }`}
+                                        onClick={handleAddBuildToCart}
+                                        disabled={selectedCount === 0}
+                                    >
+                                        {buildAdded ? (
+                                            <><Check className="w-4 h-4 mr-2" />Build Added to Cart ✓</>
+                                        ) : (
+                                            <><ShoppingCart className="w-4 h-4 mr-2" />Add Build to Cart ({selectedCount}/6)</>
+                                        )}
                                     </Button>
                                     <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800" size="sm">
                                         <Share2 className="w-4 h-4 mr-2" />
