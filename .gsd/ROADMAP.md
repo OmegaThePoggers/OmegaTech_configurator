@@ -6,7 +6,7 @@
 ## Must-Haves (from SPEC)
 - [x] Next.js framework base
 - [x] Dark tech minimalist UI
-- [ ] Improved 3D Viewer
+- [x] Improved 3D Viewer
 - [x] Manual pricing with 3x Store Links
 - [ ] Simple backend (Firebase-ready)
 - [x] Component filtering & browsing
@@ -35,7 +35,7 @@
 **Requirements**: REQ-09, REQ-10
 
 ### Phase 5: 3D Viewer Integration
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Port and optimize the Three.js viewer into a React component.
 **Requirements**: REQ-04
 
