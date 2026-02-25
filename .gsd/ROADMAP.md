@@ -6,7 +6,7 @@
 ## Must-Haves (from TODOs + new requirements)
 - [x] Expanded PC parts database with accurate pricing
 - [x] Enhanced compatibility checker (socket, chipset, DDR, TDP, form factor)
-- [ ] Dynamic 3D viewer (visual changes based on selected components)
+- [x] Dynamic 3D viewer (visual changes based on selected components)
 - [ ] Price comparison checkout across e-commerce sites
 - [ ] Vercel deployment with production build
 
@@ -49,7 +49,7 @@
 **Objective**: Populate pc-components.json with more components, accurate pricing, and detailed specs. Enhance the compatibility engine with socket, chipset, DDR generation, TDP, and form factor checks.
 
 ### Phase 8: Dynamic 3D Viewer
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Make the PCViewer reactive to selected components — change colors, highlight selected parts, show/hide components based on selection, and visually distinguish different brands/tiers.
 
 ### Phase 9: Price Comparison Checkout
