@@ -4,90 +4,115 @@
             {
                 "name": "Intel Core i5-13600K",
                 "price": 24858,
+                "socket": "LGA1700",
+                "ddrGeneration": "DDR4/DDR5",
+                "tdp": 125,
+                "cores": 14,
+                "brand": "Intel",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BCF57FL5"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/intel-core-i5-13600k/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/intel-core-i5-13600k.html"
                     }
                 ]
             },
             {
                 "name": "Intel Core i7-13700K",
                 "price": 35512,
+                "socket": "LGA1700",
+                "ddrGeneration": "DDR4/DDR5",
+                "tdp": 125,
+                "cores": 16,
+                "brand": "Intel",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BCF54SR1"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/intel-core-i7-13700k/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/intel-core-i7-13700k.html"
                     }
                 ]
             },
             {
                 "name": "AMD Ryzen 5 7600X",
                 "price": 22195,
+                "socket": "AM5",
+                "ddrGeneration": "DDR5",
+                "tdp": 105,
+                "cores": 6,
+                "brand": "AMD",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BBJDS62N"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/amd-ryzen-5-7600x/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/amd-ryzen-5-7600x.html"
                     }
                 ]
             },
             {
                 "name": "AMD Ryzen 7 7800X3D",
                 "price": 39951,
+                "socket": "AM5",
+                "ddrGeneration": "DDR5",
+                "tdp": 120,
+                "cores": 8,
+                "brand": "AMD",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BTZB7F88"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/amd-ryzen-7-7800x3d/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/amd-ryzen-7-7800x3d.html"
                     }
                 ]
             },
             {
                 "name": "Intel Core i9-13900K",
                 "price": 48829,
+                "socket": "LGA1700",
+                "ddrGeneration": "DDR4/DDR5",
+                "tdp": 125,
+                "cores": 24,
+                "brand": "Intel",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BCF54SR1"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/intel-core-i9-13900k/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/intel-core-i9-13900k.html"
                     }
                 ]
             }
@@ -96,90 +121,110 @@
             {
                 "name": "NVIDIA RTX 4060 Ti",
                 "price": 35512,
+                "tdp": 160,
+                "recommendedPsu": 550,
+                "length": 240,
+                "brand": "NVIDIA",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0C5J4MNZM"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/nvidia-rtx-4060-ti/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/nvidia-rtx-4060-ti.html"
                     }
                 ]
             },
             {
                 "name": "NVIDIA RTX 4070",
                 "price": 48829,
+                "tdp": 200,
+                "recommendedPsu": 650,
+                "length": 244,
+                "brand": "NVIDIA",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BY8WS4G5"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/nvidia-rtx-4070/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/nvidia-rtx-4070.html"
                     }
                 ]
             },
             {
                 "name": "NVIDIA RTX 4080",
                 "price": 88780,
+                "tdp": 320,
+                "recommendedPsu": 750,
+                "length": 304,
+                "brand": "NVIDIA",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BG95TQ5G"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/nvidia-rtx-4080/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/nvidia-rtx-4080.html"
                     }
                 ]
             },
             {
                 "name": "AMD RX 7700 XT",
                 "price": 42614,
+                "tdp": 245,
+                "recommendedPsu": 700,
+                "length": 267,
+                "brand": "AMD",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0CFXL3WJ5"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/amd-rx-7700-xt/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/amd-rx-7700-xt.html"
                     }
                 ]
             },
             {
                 "name": "AMD RX 7900 XT",
                 "price": 75463,
+                "tdp": 315,
+                "recommendedPsu": 750,
+                "length": 276,
+                "brand": "AMD",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BVBRHZQ2"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/amd-rx-7900-xt/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/amd-rx-7900-xt.html"
                     }
                 ]
             }
@@ -188,90 +233,110 @@
             {
                 "name": "Corsair Vengeance 16GB DDR5",
                 "price": 8878,
+                "ddrGeneration": "DDR5",
+                "speed": 5600,
+                "capacity": 16,
+                "modules": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B09WHKSMVY"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/corsair-vengeance-ddr5/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/corsair-vengeance-16gb-ddr5.html"
                     }
                 ]
             },
             {
-                "name": "G.Skill Trident Z 32GB DDR5",
+                "name": "G.Skill Trident Z5 32GB DDR5",
                 "price": 15980,
+                "ddrGeneration": "DDR5",
+                "speed": 6000,
+                "capacity": 32,
+                "modules": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B09QSK4YLC"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/gskill-trident-z5-ddr5/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/gskill-trident-z5-32gb-ddr5.html"
                     }
                 ]
             },
             {
-                "name": "Kingston Fury 16GB DDR4",
+                "name": "Kingston Fury Beast 16GB DDR4",
                 "price": 6215,
+                "ddrGeneration": "DDR4",
+                "speed": 3200,
+                "capacity": 16,
+                "modules": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B097K3RH5M"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/kingston-fury-beast-ddr4/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/kingston-fury-beast-16gb-ddr4.html"
                     }
                 ]
             },
             {
                 "name": "Crucial Ballistix 32GB DDR4",
                 "price": 10654,
+                "ddrGeneration": "DDR4",
+                "speed": 3600,
+                "capacity": 32,
+                "modules": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B083TRRT16"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/crucial-ballistix-ddr4/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/crucial-ballistix-32gb-ddr4.html"
                     }
                 ]
             },
             {
                 "name": "Team T-Force Delta RGB 32GB DDR5",
                 "price": 14205,
+                "ddrGeneration": "DDR5",
+                "speed": 5600,
+                "capacity": 32,
+                "modules": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B09VGP3YDT"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/team-tforce-delta-ddr5/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/team-tforce-delta-32gb-ddr5.html"
                     }
                 ]
             }
@@ -280,90 +345,105 @@
             {
                 "name": "Samsung 980 PRO 1TB NVMe SSD",
                 "price": 10654,
+                "type": "NVMe SSD",
+                "capacity": "1TB",
+                "interface": "PCIe 4.0",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B08GLX7TNT"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/samsung-980-pro-1tb/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/samsung-980-pro-1tb.html"
                     }
                 ]
             },
             {
                 "name": "WD Black SN850X 1TB",
                 "price": 9766,
+                "type": "NVMe SSD",
+                "capacity": "1TB",
+                "interface": "PCIe 4.0",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0B7CKVCCV"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/wd-black-sn850x-1tb/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/wd-black-sn850x-1tb.html"
                     }
                 ]
             },
             {
                 "name": "Crucial P5 Plus 1TB",
                 "price": 7990,
+                "type": "NVMe SSD",
+                "capacity": "1TB",
+                "interface": "PCIe 4.0",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B098WL46RS"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/crucial-p5-plus-1tb/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/crucial-p5-plus-1tb.html"
                     }
                 ]
             },
             {
                 "name": "Seagate Barracuda 2TB HDD",
                 "price": 5327,
+                "type": "HDD",
+                "capacity": "2TB",
+                "interface": "SATA",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B07H2RR55Q"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/seagate-barracuda-2tb/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/seagate-barracuda-2tb.html"
                     }
                 ]
             },
             {
                 "name": "Samsung 990 PRO 2TB NVMe",
                 "price": 15980,
+                "type": "NVMe SSD",
+                "capacity": "2TB",
+                "interface": "PCIe 4.0",
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B0BHJJ9Y77"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/samsung-990-pro-2tb/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/samsung-990-pro-2tb.html"
                     }
                 ]
             }
@@ -372,90 +452,105 @@
             {
                 "name": "Corsair RM750x 750W",
                 "price": 10654,
+                "wattage": 750,
+                "rating": "80+ Gold",
+                "modular": true,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B079HGN5QS"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/corsair-rm750x/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/corsair-rm750x.html"
                     }
                 ]
             },
             {
                 "name": "Cooler Master MWE 650W",
                 "price": 7990,
+                "wattage": 650,
+                "rating": "80+ Bronze",
+                "modular": false,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B07JF5R3D8"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/cooler-master-mwe-650w/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/cooler-master-mwe-650w.html"
                     }
                 ]
             },
             {
                 "name": "EVGA SuperNOVA 850W",
                 "price": 11541,
+                "wattage": 850,
+                "rating": "80+ Gold",
+                "modular": true,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B07WDLTKNM"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/evga-supernova-850w/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/evga-supernova-850w.html"
                     }
                 ]
             },
             {
                 "name": "Seasonic Focus GX-750",
                 "price": 11098,
+                "wattage": 750,
+                "rating": "80+ Gold",
+                "modular": true,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B077H33J54"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/seasonic-focus-gx-750/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/seasonic-focus-gx-750.html"
                     }
                 ]
             },
             {
                 "name": "BeQuiet Pure Power 700W",
                 "price": 9766,
+                "wattage": 700,
+                "rating": "80+ Gold",
+                "modular": false,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B09MVL3LWB"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/bequiet-pure-power-700w/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/bequiet-pure-power-700w.html"
                     }
                 ]
             }
@@ -464,90 +559,105 @@
             {
                 "name": "NZXT H510",
                 "price": 7990,
+                "formFactor": "ATX",
+                "maxGpuLength": 381,
+                "fans": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B07TD9C5HS"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/nzxt-h510/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/nzxt-h510.html"
                     }
                 ]
             },
             {
                 "name": "Lian Li Lancool II Mesh",
                 "price": 10654,
+                "formFactor": "ATX",
+                "maxGpuLength": 384,
+                "fans": 3,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B08DX68S7K"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/lian-li-lancool-ii-mesh/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/lian-li-lancool-ii-mesh.html"
                     }
                 ]
             },
             {
                 "name": "Cooler Master TD500",
                 "price": 11541,
+                "formFactor": "ATX",
+                "maxGpuLength": 410,
+                "fans": 3,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B087GCM7S7"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/cooler-master-td500/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/cooler-master-td500.html"
                     }
                 ]
             },
             {
                 "name": "Corsair 4000D Airflow",
                 "price": 9766,
+                "formFactor": "ATX",
+                "maxGpuLength": 360,
+                "fans": 2,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B08C7BGV3D"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/corsair-4000d-airflow/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/corsair-4000d-airflow.html"
                     }
                 ]
             },
             {
                 "name": "Fractal Design Meshify 2",
                 "price": 13317,
+                "formFactor": "ATX",
+                "maxGpuLength": 467,
+                "fans": 3,
                 "purchaseLinks": [
                     {
                         "store": "Amazon",
-                        "url": "#"
+                        "url": "https://www.amazon.in/dp/B08LQVKMTV"
                     },
                     {
                         "store": "Flipkart",
-                        "url": "#"
+                        "url": "https://www.flipkart.com/fractal-design-meshify-2/p/itm"
                     },
                     {
                         "store": "MD Computers",
-                        "url": "#"
+                        "url": "https://mdcomputers.in/fractal-design-meshify-2.html"
                     }
                 ]
             }
