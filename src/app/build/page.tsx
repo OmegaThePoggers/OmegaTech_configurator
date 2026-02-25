@@ -17,7 +17,7 @@ export default function ConfiguratorPage() {
     const categories: ComponentCategory[] = ['CPU', 'GPU', 'RAM', 'Storage', 'PSU', 'Case'];
     const [selectedComponents, setSelectedComponents] = useState<SelectedComponentsState>({});
     const [buildAdded, setBuildAdded] = useState(false);
-    const { addItem } = useCart();
+    const { addBuild } = useCart();
 
     const handleSelectComponent = (category: ComponentCategory, componentName: string) => {
         if (!componentName) {
@@ -55,11 +55,14 @@ export default function ConfiguratorPage() {
     const handleAddBuildToCart = () => {
         const selected = Object.entries(selectedComponents);
         if (selected.length === 0) return;
-        selected.forEach(([category, item]) => {
-            if (item) {
-                addItem({ name: item.name, price: item.price, category });
-            }
-        });
+        const buildComponents = selected
+            .filter(([, item]) => item !== undefined)
+            .map(([category, item]) => ({
+                name: item!.name,
+                price: item!.price,
+                category,
+            }));
+        addBuild(buildComponents);
         setBuildAdded(true);
         setTimeout(() => setBuildAdded(false), 2000);
     };
@@ -233,8 +236,8 @@ export default function ConfiguratorPage() {
                                 <div className="grid grid-cols-2 gap-2 mb-4">
                                     <Button
                                         className={`w-full font-medium col-span-2 ${buildAdded
-                                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                                : 'bg-zinc-100 text-zinc-900 hover:bg-zinc-300'
+                                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                            : 'bg-zinc-100 text-zinc-900 hover:bg-zinc-300'
                                             }`}
                                         onClick={handleAddBuildToCart}
                                         disabled={selectedCount === 0}
