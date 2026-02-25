@@ -2,11 +2,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2, ShoppingCart, Check } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2, ShoppingCart, Check, Save } from 'lucide-react';
 import pcComponentsData from '@/data/pc-components.json';
 import { useState, useMemo } from 'react';
 import { useCart } from '@/context/CartContext';
 import { PCViewer } from '@/components/viewer/PCViewer';
+import { saveBuild } from '@/lib/storage';
 
 // Types based on the JSON structure
 type ComponentStoreLink = { store: string; url: string };
@@ -18,6 +19,7 @@ export default function ConfiguratorPage() {
     const categories: ComponentCategory[] = ['CPU', 'GPU', 'RAM', 'Storage', 'PSU', 'Case'];
     const [selectedComponents, setSelectedComponents] = useState<SelectedComponentsState>({});
     const [buildAdded, setBuildAdded] = useState(false);
+    const [saved, setSaved] = useState(false);
     const { addBuild } = useCart();
 
     const handleSelectComponent = (category: ComponentCategory, componentName: string) => {
@@ -69,6 +71,17 @@ export default function ConfiguratorPage() {
     };
 
     const selectedCount = Object.keys(selectedComponents).length;
+
+    const handleSave = () => {
+        if (selectedCount === 0) return;
+        const components: Record<string, { name: string; price: number }> = {};
+        Object.entries(selectedComponents).forEach(([cat, item]) => {
+            if (item) components[cat] = { name: item.name, price: item.price };
+        });
+        saveBuild({ name: `Custom Build`, components, totalPrice: totalCost });
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+    };
 
     const totalCost = useMemo(() => {
         return Object.values(selectedComponents).reduce((acc, item) => acc + (item?.price || 0), 0);
@@ -241,6 +254,21 @@ export default function ConfiguratorPage() {
                                             <><Check className="w-4 h-4 mr-2" />Build Added to Cart ✓</>
                                         ) : (
                                             <><ShoppingCart className="w-4 h-4 mr-2" />Add Build to Cart ({selectedCount}/6)</>
+                                        )}
+                                    </Button>
+                                    <Button
+                                        className={`w-full font-medium col-span-2 ${saved
+                                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                                : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700 border border-zinc-700'
+                                            }`}
+                                        onClick={handleSave}
+                                        disabled={selectedCount === 0}
+                                        size="sm"
+                                    >
+                                        {saved ? (
+                                            <><Check className="w-4 h-4 mr-2" />Configuration Saved ✓</>
+                                        ) : (
+                                            <><Save className="w-4 h-4 mr-2" />Save Configuration</>
                                         )}
                                     </Button>
                                     <Button variant="outline" className="w-full border-zinc-700 hover:bg-zinc-800" size="sm">
