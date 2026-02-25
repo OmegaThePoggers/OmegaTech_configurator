@@ -11,7 +11,29 @@ import { saveBuild } from '@/lib/storage';
 
 // Types based on the JSON structure
 type ComponentStoreLink = { store: string; url: string };
-type ComponentItem = { name: string; price: number; purchaseLinks: ComponentStoreLink[] };
+type ComponentItem = {
+    name: string;
+    price: number;
+    purchaseLinks: ComponentStoreLink[];
+    socket?: string;
+    ddrGeneration?: string;
+    tdp?: number;
+    cores?: number;
+    brand?: string;
+    recommendedPsu?: number;
+    length?: number;
+    speed?: number;
+    capacity?: number | string;
+    modules?: number;
+    type?: string;
+    interface?: string;
+    wattage?: number;
+    rating?: string;
+    modular?: boolean;
+    formFactor?: string;
+    maxGpuLength?: number;
+    fans?: number;
+};
 type ComponentCategory = 'CPU' | 'GPU' | 'RAM' | 'Storage' | 'PSU' | 'Case';
 type SelectedComponentsState = Partial<Record<ComponentCategory, ComponentItem>>;
 
@@ -89,30 +111,46 @@ export default function ConfiguratorPage() {
 
     const compatibilityWarnings = useMemo(() => {
         const warnings: string[] = [];
-        const cpu = selectedComponents.CPU?.name;
-        const ram = selectedComponents.RAM?.name;
-        const gpu = selectedComponents.GPU?.name;
-        const psu = selectedComponents.PSU?.name;
+        const cpu = selectedComponents.CPU;
+        const ram = selectedComponents.RAM;
+        const gpu = selectedComponents.GPU;
+        const psu = selectedComponents.PSU;
+        const pcCase = selectedComponents.Case;
 
-        // DDR4/DDR5 Logic
-        if (cpu && ram) {
-            const needsDDR5 = cpu.includes('13') || cpu.includes('7600X') || cpu.includes('7800X');
-            const isDDR4 = ram.toLowerCase().includes('ddr4');
-            if (needsDDR5 && isDDR4) {
-                warnings.push("Selected RAM is incompatible with CPU (DDR5 required).");
+        // Check 1: DDR Generation
+        if (cpu?.ddrGeneration && ram?.ddrGeneration) {
+            // If CPU only supports DDR5 but RAM is DDR4
+            if (cpu.ddrGeneration === 'DDR5' && ram.ddrGeneration === 'DDR4') {
+                warnings.push(`Selected RAM is ${ram.ddrGeneration} but ${cpu.name} requires DDR5.`);
             }
         }
 
-        // PSU Wattage Logic for High-End GPUs
-        if (gpu && psu) {
-            const highEndGPUs = ['RTX 4080', 'RX 7900 XT'];
-            const psuWattageMatch = psu.match(/\d+/);
-            const psuWattage = psuWattageMatch ? parseInt(psuWattageMatch[0]) : 0;
-
-            if (highEndGPUs.some(model => gpu.includes(model)) && psuWattage < 750) {
-                warnings.push("PSU wattage may be insufficient for this GPU (750W+ recommended).");
+        // Check 2: PSU Wattage for GPU
+        if (gpu?.recommendedPsu && psu?.wattage) {
+            if (psu.wattage < gpu.recommendedPsu) {
+                warnings.push(`${gpu.name} recommends a ${gpu.recommendedPsu}W PSU, but selected PSU is only ${psu.wattage}W.`);
             }
         }
+
+        // Check 3: GPU Length vs Case
+        if (gpu?.length && pcCase?.maxGpuLength) {
+            if (gpu.length > pcCase.maxGpuLength) {
+                warnings.push(`${gpu.name} is ${gpu.length}mm long, which exceeds ${pcCase.name}'s max length of ${pcCase.maxGpuLength}mm.`);
+            }
+        }
+
+        // Check 4: Total TDP vs PSU
+        if (psu?.wattage) {
+            const cpuTdp = cpu?.tdp || 0;
+            const gpuTdp = gpu?.tdp || 0;
+            const estimatedTotalTdp = cpuTdp + gpuTdp + 50; // 50W for mobo/fans/drives
+
+            // If total TDP is more than 85% of PSU capacity
+            if (estimatedTotalTdp > psu.wattage * 0.85) {
+                warnings.push(`System TDP (${estimatedTotalTdp}W) is approaching PSU limit. Consider upgrading.`);
+            }
+        }
+
         return warnings;
     }, [selectedComponents]);
 
@@ -258,8 +296,8 @@ export default function ConfiguratorPage() {
                                     </Button>
                                     <Button
                                         className={`w-full font-medium col-span-2 ${saved
-                                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                                                : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700 border border-zinc-700'
+                                            ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                                            : 'bg-zinc-800 text-zinc-200 hover:bg-zinc-700 border border-zinc-700'
                                             }`}
                                         onClick={handleSave}
                                         disabled={selectedCount === 0}
