@@ -7,7 +7,7 @@
 - [x] Expanded PC parts database with accurate pricing
 - [x] Enhanced compatibility checker (socket, chipset, DDR, TDP, form factor)
 - [x] Dynamic 3D viewer (visual changes based on selected components)
-- [ ] Price comparison checkout across e-commerce sites
+- [x] Price comparison checkout across e-commerce sites
 - [ ] Vercel deployment with production build
 
 ## Phases
@@ -53,7 +53,7 @@
 **Objective**: Make the PCViewer reactive to selected components — change colors, highlight selected parts, show/hide components based on selection, and visually distinguish different brands/tiers.
 
 ### Phase 9: Price Comparison Checkout
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Add a "Buy" flow in the cart that compares each component's price across Amazon, Flipkart, Newegg, MD Computers, with a "Buy from OmegaTech" native option.
 
 ### Phase 10: Vercel Deployment
