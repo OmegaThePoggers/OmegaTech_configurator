@@ -3,7 +3,8 @@
 import { useCart } from '@/context/CartContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Trash2, ShoppingCart, X, Monitor } from 'lucide-react';
+import { Trash2, ShoppingCart, X, Monitor, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function CartPage() {
     const { items, builds, removeItem, removeBuild, clearCart, totalPrice, totalItems } = useCart();
@@ -124,6 +125,14 @@ export default function CartPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            {/* Checkout Button */}
+            <Button asChild className="w-full mt-4 bg-zinc-100 text-zinc-900 hover:bg-zinc-300 font-semibold text-base h-12">
+                <Link href="/checkout">
+                    Proceed to Checkout
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+            </Button>
         </div>
     );
 }
