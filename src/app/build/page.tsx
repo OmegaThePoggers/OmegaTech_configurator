@@ -109,6 +109,24 @@ export default function ConfiguratorPage() {
         return Object.values(selectedComponents).reduce((acc, item) => acc + (item?.price || 0), 0);
     }, [selectedComponents]);
 
+    const viewerComponents = useMemo(() => {
+        const result: Record<string, { name: string; brand?: string; tdp?: number; length?: number; wattage?: number; modules?: number; ddrGeneration?: string }> = {};
+        Object.entries(selectedComponents).forEach(([category, item]) => {
+            if (item) {
+                result[category] = {
+                    name: item.name,
+                    brand: item.brand,
+                    tdp: item.tdp,
+                    length: item.length,
+                    wattage: item.wattage,
+                    modules: item.modules,
+                    ddrGeneration: item.ddrGeneration,
+                };
+            }
+        });
+        return result;
+    }, [selectedComponents]);
+
     const compatibilityWarnings = useMemo(() => {
         const warnings: string[] = [];
         const cpu = selectedComponents.CPU;
@@ -187,7 +205,7 @@ export default function ConfiguratorPage() {
                     </div>
 
                     {/* 3D Viewer */}
-                    <PCViewer className="w-full h-[400px] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900" />
+                    <PCViewer className="w-full h-[400px] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900" selectedComponents={viewerComponents} />
 
                     {/* Component Selection Grid */}
                     <div className="grid gap-4 mt-8">
