@@ -4,9 +4,18 @@ import { useCart } from '@/context/CartContext';
 import { getCheckoutItems, CheckoutItem } from '@/lib/checkout';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ExternalLink, ShoppingBag } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ShoppingBag, ShieldCheck, Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import Script from 'next/script';
+import { useRouter } from 'next/navigation';
+import { saveOrder } from '@/lib/orders';
+
+declare global {
+    interface Window {
+        Razorpay: any;
+    }
+}
 
 const STORE_STYLES: Record<string, string> = {
     'Amazon': 'bg-amber-600 hover:bg-amber-700 text-white',
@@ -15,7 +24,9 @@ const STORE_STYLES: Record<string, string> = {
 };
 
 export default function CheckoutPage() {
-    const { builds, items, totalPrice } = useCart();
+    const { builds, items, totalPrice, clearCart } = useCart();
+    const router = useRouter();
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const checkoutItems: CheckoutItem[] = useMemo(
         () => getCheckoutItems(builds, items),
@@ -39,8 +50,85 @@ export default function CheckoutPage() {
         );
     }
 
+    const handlePayment = async () => {
+        setIsProcessing(true);
+        try {
+            // 1. Create order
+            const res = await fetch('/api/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: totalPrice }),
+            });
+            const { orderId } = await res.json();
+
+            // 2. Open Razorpay modal
+            const options = {
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                amount: totalPrice * 100,
+                currency: 'INR',
+                name: 'OmegaTech',
+                description: 'PC Components Purchase',
+                order_id: orderId,
+                handler: async (response: any) => {
+                    // 3. Verify payment
+                    const verifyRes = await fetch('/api/verify-payment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(response),
+                    });
+                    const data = await verifyRes.json();
+
+                    if (data.verified) {
+                        // 4. Save order to localStorage
+                        saveOrder({
+                            id: `OT-${Date.now()}`,
+                            razorpayOrderId: orderId,
+                            razorpayPaymentId: response.razorpay_payment_id,
+                            items: checkoutItems.map(i => ({
+                                name: i.name,
+                                category: i.category,
+                                price: i.price
+                            })),
+                            totalAmount: totalPrice,
+                            status: 'completed'
+                        });
+
+                        // 5. Let user manually clear cart on confirmation, just redirect
+                        router.push(`/checkout/confirmation?orderId=${orderId}&paymentId=${response.razorpay_payment_id}`);
+                    } else {
+                        alert('Payment verification failed');
+                        setIsProcessing(false);
+                    }
+                },
+                prefill: {
+                    name: 'Guest User',
+                    email: 'guest@example.com',
+                    contact: '9999999999',
+                },
+                theme: {
+                    color: '#18181b', // zinc-950
+                },
+                modal: {
+                    ondismiss: function () {
+                        setIsProcessing(false);
+                    }
+                }
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.open();
+
+        } catch (error) {
+            console.error(error);
+            alert('Something went wrong. Please try again.');
+            setIsProcessing(false);
+        }
+    };
+
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl flex-grow">
+            <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
+
             {/* Header */}
             <div className="flex items-center gap-4 mb-8">
                 <Button asChild variant="ghost" size="sm" className="text-zinc-400 hover:text-zinc-200">
@@ -117,6 +205,34 @@ export default function CheckoutPage() {
             <p className="text-[11px] text-zinc-600 text-center mt-4">
                 Prices shown are approximate. Click a store button to verify current pricing on the retailer&apos;s website.
             </p>
+
+            <div className="mt-12 flex flex-col items-center">
+                <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-xl p-6 text-center shadow-xl shadow-black/20">
+                    <ShieldCheck className="w-10 h-10 text-emerald-500 mx-auto mb-4" />
+                    <h3 className="text-lg font-bold text-zinc-100 mb-2">Buy Directly from OmegaTech</h3>
+                    <p className="text-sm text-zinc-400 mb-6 leading-relaxed">
+                        Prefer to get everything in one place? Buy your entire build directly through us via Razorpay secure checkout.
+                    </p>
+                    <Button
+                        onClick={handlePayment}
+                        disabled={isProcessing}
+                        className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base transition-colors"
+                    >
+                        {isProcessing ? (
+                            <>
+                                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                Processing...
+                            </>
+                        ) : (
+                            `Pay ₹${totalPrice.toLocaleString('en-IN')} with Razorpay`
+                        )}
+                    </Button>
+                    <p className="text-xs text-zinc-600 mt-4 flex items-center justify-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        Test Mode Enabled (No real charges)
+                    </p>
+                </div>
+            </div>
         </div>
     );
 }
