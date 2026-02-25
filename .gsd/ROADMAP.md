@@ -8,7 +8,7 @@
 - [x] Enhanced compatibility checker (socket, chipset, DDR, TDP, form factor)
 - [x] Dynamic 3D viewer (visual changes based on selected components)
 - [x] Price comparison checkout across e-commerce sites
-- [ ] Razorpay payment gateway integration
+- [ ] Stripe payment gateway integration
 - [ ] Vercel deployment with production build
 
 ## Phases
@@ -57,9 +57,9 @@
 **Status**: ✅ Complete
 **Objective**: Add a "Buy" flow in the cart that compares each component's price across Amazon, Flipkart, MD Computers.
 
-### Phase 10: Razorpay Payment Integration
+### Phase 10: Stripe Payment Integration
 **Status**: ⬜ Not Started
-**Objective**: Integrate Razorpay payment gateway with order creation API route, checkout button, payment verification, and order confirmation page. Uses test mode keys via environment variables.
+**Objective**: Integrate Stripe payment gateway with Stripe Checkout Sessions API route, "Buy from OmegaTech" button, and order confirmation page. Uses test mode keys via environment variables.
 
 ### Phase 11: Vercel Deployment
 **Status**: ⬜ Not Started
