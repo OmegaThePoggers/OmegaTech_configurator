@@ -1,7 +1,10 @@
+'use client';
+
 import Link from "next/link";
 import { Cpu, CheckCircle2, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { PCViewer } from "@/components/viewer/PCViewer";
 
 export default function Home() {
   return (
@@ -101,11 +104,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50 flex items-center justify-center">
-              <div className="text-zinc-600 flex flex-col items-center">
-                <div className="w-24 h-24 mb-4 opacity-20 bg-zinc-400 rounded-xl"></div>
-                <p className="font-mono text-sm">[3D PC View Placeholder]</p>
-              </div>
+            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50">
+              <PCViewer className="w-full h-full" />
             </div>
           </div>
         </div>

@@ -2,10 +2,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Monitor, CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2, ShoppingCart, Check } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Share2, Download, RefreshCw, Trash2, ShoppingCart, Check } from 'lucide-react';
 import pcComponentsData from '@/data/pc-components.json';
 import { useState, useMemo } from 'react';
 import { useCart } from '@/context/CartContext';
+import { PCViewer } from '@/components/viewer/PCViewer';
 
 // Types based on the JSON structure
 type ComponentStoreLink = { store: string; url: string };
@@ -134,14 +135,8 @@ export default function ConfiguratorPage() {
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Build Your PC</h1>
                     </div>
 
-                    {/* 3D Viewer Placeholder */}
-                    <div className="w-full h-[400px] bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-                        <div className="z-10 flex flex-col items-center text-zinc-500">
-                            <Monitor className="w-12 h-12 mb-4 opacity-50" />
-                            <p className="font-mono text-sm">[Interactive 3D Viewer Area]</p>
-                        </div>
-                    </div>
+                    {/* 3D Viewer */}
+                    <PCViewer className="w-full h-[400px] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900" />
 
                     {/* Component Selection Grid */}
                     <div className="grid gap-4 mt-8">
