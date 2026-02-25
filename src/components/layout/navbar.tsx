@@ -16,6 +16,9 @@ export function Navbar() {
                         <Link href="/build" className="text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors">
                             Build PC
                         </Link>
+                        <Link href="/components" className="text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors">
+                            Components
+                        </Link>
                         <Link href="/configs" className="text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors">
                             Saved Configs
                         </Link>
