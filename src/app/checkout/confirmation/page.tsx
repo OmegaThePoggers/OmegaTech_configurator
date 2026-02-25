@@ -9,7 +9,9 @@ import { useEffect, useState } from 'react';
 import { getOrders, SavedOrder } from '@/lib/orders';
 import { useCart } from '@/context/CartContext';
 
-export default function ConfirmationPage() {
+import { Suspense } from 'react';
+
+function ConfirmationContent() {
     const searchParams = useSearchParams();
     const orderId = searchParams.get('orderId');
     const paymentId = searchParams.get('paymentId');
@@ -120,5 +122,17 @@ export default function ConfirmationPage() {
             </div>
 
         </div>
+    );
+}
+
+export default function ConfirmationPage() {
+    return (
+        <Suspense fallback={
+            <div className="container mx-auto px-4 py-20 flex justify-center">
+                <div className="animate-pulse bg-zinc-900 rounded-xl h-96 w-full max-w-lg"></div>
+            </div>
+        }>
+            <ConfirmationContent />
+        </Suspense>
     );
 }
