@@ -1,20 +1,19 @@
 # STATE.md
 
-> **Status**: EXECUTED
-> **Current Phase**: Phase 6 (Pending Plan)
+> **Status**: PLANNED
+> **Current Phase**: Phase 6 (Pending Execution)
 
 ## Session Context
-- Project initialized using Next.js framework
-- Phase 1–5 executed completely. 3D Viewer ported from legacy Three.js to React Three Fiber.
-- Only Phase 6 (Backend & Polish) remains.
+- Phase 1–5 executed completely. 3D Viewer, filtering, cart, and configurator all functional.
+- Phase 6 planned: Save builds (localStorage) + UI polish for About/Contact.
 
 ## Current Position
-- **Phase**: 5 (completed)
-- **Task**: All tasks complete
-- **Status**: Verified
+- **Phase**: 6
+- **Task**: Planning complete
+- **Status**: Ready for execution
 
 ## Last Session Summary
-Phase 5 executed. Installed @react-three/fiber + drei. Created PCViewer component porting legacy 3d-viewer.js geometry. Integrated into /build page and homepage replacing placeholders.
+Phase 6 planned. 2 plans across 2 waves: 6.1 Save/Load builds via localStorage (Wave 1), 6.2 UI polish for About and Contact pages (Wave 2).
 
 ## Next Steps
-1. /plan 6
+1. /execute 6
