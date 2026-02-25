@@ -9,8 +9,8 @@
 - [ ] Improved 3D Viewer
 - [x] Manual pricing with 3x Store Links
 - [ ] Simple backend (Firebase-ready)
-- [ ] Component filtering & browsing
-- [ ] Shopping cart system
+- [x] Component filtering & browsing
+- [x] Shopping cart system
 
 ## Phases
 
@@ -30,7 +30,7 @@
 **Requirements**: REQ-05, REQ-06, REQ-08
 
 ### Phase 4: Filtering & Shopping Cart
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete
 **Objective**: Create a browsable component catalog with filtering (by brand, price, category) and a shopping cart system for adding/removing parts.
 **Requirements**: REQ-09, REQ-10
 
