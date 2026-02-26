@@ -4,26 +4,16 @@
 import * as THREE from 'three';
 import { useRef, useState, useMemo } from 'react';
 import { Canvas, createPortal, useFrame, useThree } from '@react-three/fiber';
-import { useFBO, MeshTransmissionMaterial, Text } from '@react-three/drei';
+import { MeshTransmissionMaterial, Text, Environment } from '@react-three/drei';
 import { easing } from 'maath';
 
 // ── Glass Lens that follows the pointer ────────────────
 function GlassLens() {
     const meshRef = useRef<THREE.Mesh>(null!);
-    const buffer = useFBO();
     const { viewport, camera } = useThree();
-    const [scene] = useState(() => new THREE.Scene());
-
-    // Content rendered inside the glass distortion
-    const content = useMemo(() => (
-        <>
-            {/* Decorative floating particles */}
-            <Particles />
-        </>
-    ), []);
 
     useFrame((state, delta) => {
-        const { gl, pointer } = state;
+        const { pointer } = state;
         const v = viewport.getCurrentViewport(camera, [0, 0, 15]);
 
         // Smooth follow cursor
@@ -33,26 +23,21 @@ function GlassLens() {
 
         // Slow rotation
         meshRef.current.rotation.z += delta * 0.1;
-
-        // Render scene to FBO for transmission material
-        gl.setRenderTarget(buffer);
-        gl.render(scene, camera);
-        gl.setRenderTarget(null);
     });
 
     return (
         <>
-            {createPortal(content, scene)}
-
+            <Particles />
             {/* The glass lens */}
             <mesh ref={meshRef} scale={0.3}>
                 <sphereGeometry args={[1, 64, 64]} />
                 <MeshTransmissionMaterial
-                    buffer={buffer.texture}
-                    ior={1.2}
+                    transmission={1}
+                    roughness={0}
                     thickness={3}
-                    anisotropy={0.1}
+                    ior={1.2}
                     chromaticAberration={0.06}
+                    anisotropy={0.1}
                     distortion={0.2}
                     distortionScale={0.15}
                     temporalDistortion={0.1}
@@ -118,6 +103,7 @@ export function FluidCursor() {
                 gl={{ alpha: true }}
                 style={{ background: 'transparent' }}
             >
+                <Environment preset="city" />
                 <GlassLens />
             </Canvas>
         </div>
