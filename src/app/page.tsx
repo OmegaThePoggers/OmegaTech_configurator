@@ -5,14 +5,14 @@ import { Cpu, CheckCircle2, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { PCViewer } from "@/components/viewer/PCViewer";
-import { CursorGlow } from "@/components/effects/CursorGlow";
+import { FluidCursor } from "@/components/effects/FluidCursor";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center flex-grow">
       {/* Hero Section */}
-      <section className="w-full py-24 px-4 text-center relative overflow-hidden">
-        <CursorGlow />
+      <section className="w-full py-24 px-4 text-center relative overflow-hidden min-h-[500px]">
+        <FluidCursor />
         <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500 drop-shadow-sm relative z-10">
           OmegaTech PC Configurator
         </h1>
