@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+OmegaTech PC Configurator is a multipage, liquid glass themed web application that allows users to build custom PC configurations by selecting components and viewing total cost in real time.
+
+Designed as a Fundamentals of Ecommerce project, the application focuses on responsive UI design, dynamic client-side interactivity, and lightweight backend handling using Next.js and vercel — all wrapped in a modern tech aesthetic.
 
 ## Getting Started
 

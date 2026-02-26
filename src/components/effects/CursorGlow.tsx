@@ -1,6 +1,10 @@
 'use client';
 
+<<<<<<< HEAD
 import { useCallback, useRef, useEffect, useState } from 'react';
+=======
+import { useCallback, useRef, useState, useEffect } from 'react';
+>>>>>>> 8c4504d (fix: resolve gitignore merge conflict, restore CursorGlow)
 
 export function CursorGlow() {
     const containerRef = useRef<HTMLDivElement>(null);

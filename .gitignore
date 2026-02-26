@@ -41,10 +41,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+<<<<<<< HEAD
 #agent
-.agent
+=======
+
 .gemini
+
 .gsd
-.vscode
-.adapters
-.claude
+
+.agent
+
+adapters
+
