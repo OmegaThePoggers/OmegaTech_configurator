@@ -5,19 +5,21 @@ import { Cpu, CheckCircle2, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { PCViewer } from "@/components/viewer/PCViewer";
+import { CursorGlow } from "@/components/effects/CursorGlow";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center flex-grow">
       {/* Hero Section */}
-      <section className="w-full py-24 px-4 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500 drop-shadow-sm">
+      <section className="w-full py-24 px-4 text-center relative overflow-hidden">
+        <CursorGlow />
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500 drop-shadow-sm relative z-10">
           OmegaTech PC Configurator
         </h1>
-        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
           Build your dream gaming PC with cutting-edge components and real-time compatibility checks.
         </p>
-        <Button size="lg" className="h-14 px-8 text-lg bg-zinc-50 text-zinc-950 hover:bg-zinc-200" asChild>
+        <Button size="lg" className="h-14 px-8 text-lg bg-zinc-50 text-zinc-950 hover:bg-zinc-200 relative z-10" asChild>
           <Link href="/build">Start Building</Link>
         </Button>
       </section>
@@ -105,7 +107,7 @@ export default function Home() {
               </div>
             </div>
             <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50">
-              <PCViewer className="w-full h-full" />
+              <PCViewer className="w-full h-full" demo />
             </div>
           </div>
         </div>
@@ -113,3 +115,4 @@ export default function Home() {
     </div>
   );
 }
+
