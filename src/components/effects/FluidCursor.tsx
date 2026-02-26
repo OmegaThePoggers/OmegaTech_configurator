@@ -12,8 +12,6 @@ import { usePathname } from 'next/navigation';
 function GlassLens() {
     const meshRef = useRef<THREE.Mesh>(null!);
     const { viewport, camera } = useThree();
-    const pathname = usePathname();
-    const isHome = pathname === '/';
 
     useFrame((state, delta) => {
         const { pointer } = state;
@@ -27,8 +25,8 @@ function GlassLens() {
         // Slow rotation
         meshRef.current.rotation.z += delta * 0.1;
 
-        // Dynamic scale
-        const targetScale = isHome ? 0.225 : 0.08;
+        // Target scale for home page
+        const targetScale = 0.225;
         easing.damp3(meshRef.current.scale, [targetScale, targetScale, targetScale], 0.2, delta);
     });
 
@@ -103,11 +101,14 @@ function Particles() {
 
 // ── Export ──────────────────────────────────────────────
 export function FluidCursor() {
+    const pathname = usePathname();
     const [eventSource, setEventSource] = useState<HTMLElement | null>(null);
 
     useEffect(() => {
         setEventSource(document.body);
     }, []);
+
+    if (pathname !== '/') return null;
 
     return (
         <div className="absolute inset-0 z-0" style={{ pointerEvents: 'none' }}>
