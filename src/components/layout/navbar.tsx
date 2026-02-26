@@ -9,7 +9,7 @@ export function Navbar() {
     const { totalItems } = useCart();
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+        <nav className="sticky top-0 z-50 w-full glass-panel">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <div className="flex items-center space-x-6">
                     <Link href="/" className="text-xl font-bold tracking-tighter text-zinc-50">

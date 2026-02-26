@@ -1,21 +1,21 @@
 # STATE.md
 
-> **Status**: COMPLETED
-> **Current Phase**: Milestone v1.1 Complete
+> **Status**: IN_PROGRESS
+> **Current Phase**: 12
 
 ## Session Context
-- v1.1 milestone in progress. Phases 7, 8, 9, 10, and 11 complete.
-- Phase 11: Vercel Deployment executed — `vercel.json` added, strict build checks enabled (`tsc --noEmit && next lint`).
+- Starting Milestone v1.2: Liquid Glass UI Redesign.
+- Previous Milestone v1.1 is fully verified and deployed to Vercel.
+- The user wants to integrate the `reactbits.dev` FluidGlass design language globally across the frontend.
 
 ## Current Position
-- **Phase**: 11 (completed)
-- **Task**: All tasks complete
-- **Status**: Milestone v1.1 Verified
+- **Phase**: 12 (Liquid Glass UI Redesign)
+- **Task**: Phase 12 Planning
+- **Status**: Planning UI structure and drafting 12.1-PLAN.md
 
 ## Last Session Summary
-Phase 11 executed. 1 plan, 1 task. Configured Next.js output and security headers via `vercel.json`. Enforced strict TypeScript checking and ESLinting during the `npm run build` step. Build passed cleanly. All v1.1 phases are verified and complete. 
+FluidCursor component was created successfully using `MeshTransmissionMaterial` and FBOs to replicate the reactbits glass lens effect. Merged and successfully deployed. Now pivoting to expand this aesthetic to the rest of the app.
 
 ## Next Steps
-1. Push to GitHub
-2. Connect repository in Vercel dashboard to deploy automatically
-3. Create new v1.2 milestone (if additional features are needed)
+1. Create `12.1-PLAN.md` to define the execution steps for Phase 12.
+2. Execute the styling overhaul (glassmorphism cards, nav, etc.).

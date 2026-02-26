@@ -25,15 +25,15 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="w-full py-20 px-4 bg-zinc-900/50 border-y border-zinc-800/50">
+      <section className="w-full py-20 px-4 border-y border-white/5 relative z-10">
         <div className="container mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-16">
             Why Choose Us?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-zinc-950/50 border-zinc-800 text-center hover:border-zinc-700 transition-colors">
+            <Card className="hover:glass-accent transition-all duration-300">
               <CardHeader className="pt-8">
-                <div className="mx-auto bg-zinc-900 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-zinc-800">
+                <div className="mx-auto bg-zinc-500/10 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-white/10">
                   <Cpu className="w-8 h-8 text-zinc-300" />
                 </div>
                 <CardTitle className="text-xl">Expert Selection</CardTitle>
@@ -45,9 +45,9 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950/50 border-zinc-800 text-center hover:border-zinc-700 transition-colors">
+            <Card className="hover:glass-accent transition-all duration-300">
               <CardHeader className="pt-8">
-                <div className="mx-auto bg-zinc-900 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-zinc-800">
+                <div className="mx-auto bg-zinc-500/10 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-white/10">
                   <CheckCircle2 className="w-8 h-8 text-emerald-500" />
                 </div>
                 <CardTitle className="text-xl">Live Compatibility</CardTitle>
@@ -59,9 +59,9 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950/50 border-zinc-800 text-center hover:border-zinc-700 transition-colors">
+            <Card className="hover:glass-accent transition-all duration-300">
               <CardHeader className="pt-8">
-                <div className="mx-auto bg-zinc-900 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-zinc-800">
+                <div className="mx-auto bg-zinc-500/10 w-16 h-16 rounded-full flex items-center justify-center mb-4 border border-white/10">
                   <DollarSign className="w-8 h-8 text-amber-500" />
                 </div>
                 <CardTitle className="text-xl">Transparent Pricing</CardTitle>
@@ -106,7 +106,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50">
+            <div className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden glass-panel">
               <PCViewer className="w-full h-full" demo />
             </div>
           </div>

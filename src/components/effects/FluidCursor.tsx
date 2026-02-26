@@ -17,30 +17,6 @@ function GlassLens() {
     // Content rendered inside the glass distortion
     const content = useMemo(() => (
         <>
-            <Text
-                position={[0, 0.3, 0]}
-                fontSize={0.35}
-                letterSpacing={-0.05}
-                color="#ffffff"
-                anchorX="center"
-                anchorY="middle"
-                outlineWidth={0}
-                outlineBlur="20%"
-                outlineColor="#000"
-                outlineOpacity={0.3}
-            >
-                OmegaTech
-            </Text>
-            <Text
-                position={[0, -0.15, 0]}
-                fontSize={0.12}
-                letterSpacing={0.1}
-                color="#a1a1aa"
-                anchorX="center"
-                anchorY="middle"
-            >
-                PC CONFIGURATOR
-            </Text>
             {/* Decorative floating particles */}
             <Particles />
         </>
@@ -67,12 +43,6 @@ function GlassLens() {
     return (
         <>
             {createPortal(content, scene)}
-
-            {/* Background plane showing FBO content */}
-            <mesh scale={[viewport.width, viewport.height, 1]}>
-                <planeGeometry />
-                <meshBasicMaterial map={buffer.texture} transparent />
-            </mesh>
 
             {/* The glass lens */}
             <mesh ref={meshRef} scale={0.3}>
@@ -148,7 +118,6 @@ export function FluidCursor() {
                 gl={{ alpha: true }}
                 style={{ background: 'transparent' }}
             >
-                <color attach="background" args={['#09090b']} />
                 <GlassLens />
             </Canvas>
         </div>

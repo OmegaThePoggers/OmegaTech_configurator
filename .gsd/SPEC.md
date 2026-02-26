@@ -7,7 +7,7 @@ To rebuild the OmegaTech PC Configurator into a modern, highly performant React/
 
 ## Goals
 1. **Modern Rewrite:** Port the vanilla HTML/JS/PHP codebase into a structured Next.js application using React components.
-2. **UI Revamp:** Implement a premium "minimalist tech" dark mode aesthetic.
+2. **UI Revamp:** Implement a premium "minimalist tech" dark mode aesthetic, heavily featuring "liquid glass" elements (refractive glassmorphism, dynamic cursor effects).
 3. **Improved 3D Viewer:** Optimize and visually improve the existing Three.js PC builder preview.
 4. **Expanded Components & Pricing:** Enhance the component list and implement manual pricing entry combined with external links to Amazon, Flipkart, and MD Computers.
 5. **Backend Scalability:** Keep the backend as a simple JSON-based or lightweight local implementation for now, architected to seamlessly migrate to Firebase in the future.

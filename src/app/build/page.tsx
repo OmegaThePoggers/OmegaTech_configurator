@@ -205,13 +205,13 @@ export default function ConfiguratorPage() {
                     </div>
 
                     {/* 3D Viewer */}
-                    <PCViewer className="w-full h-[400px] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900" selectedComponents={viewerComponents} />
+                    <PCViewer className="w-full h-[400px] rounded-xl overflow-hidden glass-panel" selectedComponents={viewerComponents} />
 
                     {/* Component Selection Grid */}
                     <div className="grid gap-4 mt-8">
                         <h3 className="text-xl font-semibold mb-2">Select Components</h3>
                         {categories.map((category) => (
-                            <Card key={category} className="bg-zinc-900/50 border-zinc-800">
+                            <Card key={category} className="glass-panel overflow-hidden">
                                 <CardContent className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                     <div className="w-full md:w-1/4">
                                         <span className="font-medium text-zinc-300">{category}</span>
@@ -241,7 +241,7 @@ export default function ConfiguratorPage() {
                     <div className="sticky top-24 space-y-6">
 
                         {/* Compatibility Status */}
-                        <Card className="bg-zinc-900 border-zinc-800">
+                        <Card className="glass-panel">
                             <CardHeader className="pb-3">
                                 <CardTitle className="text-lg flex items-center gap-2">
                                     <CheckCircle className="w-5 h-5 text-emerald-500" />
@@ -274,7 +274,7 @@ export default function ConfiguratorPage() {
                         </Card>
 
                         {/* Price Summary */}
-                        <Card className="bg-zinc-900 border-zinc-800 flex flex-col">
+                        <Card className="glass-panel flex flex-col">
                             <CardHeader className="pb-4">
                                 <CardTitle className="text-lg">Configuration Summary</CardTitle>
                             </CardHeader>

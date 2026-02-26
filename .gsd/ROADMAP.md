@@ -1,7 +1,7 @@
 # ROADMAP.md
 
-> **Current Phase**: Not started
-> **Milestone**: v1.1 (Refinement, Backend & Deployment)
+> **Current Phase**: 12
+> **Milestone**: v1.2 (Liquid Glass UI Redesign)
 
 ## Must-Haves (from TODOs + new requirements)
 - [x] Expanded PC parts database with accurate pricing
@@ -10,6 +10,7 @@
 - [x] Price comparison checkout across e-commerce sites
 - [x] Razorpay payment gateway integration
 - [x] Vercel deployment with production build
+- [ ] Liquid Glass global UI aesthetics & responsive nav
 
 ## Phases
 
@@ -64,3 +65,9 @@
 ### Phase 11: Vercel Deployment
 **Status**: ✅ Complete
 **Objective**: Configure production build, deploy to Vercel, set up GitHub auto-deploy, and final production polish.
+
+---
+
+### Phase 12: Liquid Glass UI Redesign (v1.2)
+**Status**: 🚧 In Progress
+**Objective**: Overhaul the frontend aesthetic to feature the new "Liquid Glass" distortion effect. Implement the refractive cursor on the homepage, apply glassmorphism to components, and prepare a unified visual system.
