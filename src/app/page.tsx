@@ -14,10 +14,9 @@ export default function Home() {
         <h1 className="sr-only">
           OmegaTech PC Configurator
         </h1>
-        {/* Responsive spacer that acts as a placeholder for the 3D text.
-            FluidCursor's Hero3DText is aligned to roughly match this element's vertical position. */}
-        <div className="h-32 sm:h-40 md:h-48 lg:h-56 w-full pointer-events-none flex-shrink-0" />
-        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10 mt-6 md:mt-10">
+        {/* Responsive spacer roughly the size of the original h1 text */}
+        <div className="h-20 md:h-28 w-full pointer-events-none flex-shrink-0" />
+        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
           Build your dream gaming PC with cutting-edge components and real-time compatibility checks.
         </p>
         <Button size="lg" className="h-14 px-8 text-lg bg-zinc-50 text-zinc-950 hover:bg-zinc-200 relative z-10" asChild>

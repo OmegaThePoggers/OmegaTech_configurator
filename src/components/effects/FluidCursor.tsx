@@ -15,7 +15,7 @@ function Hero3DText() {
 
     // Scale breakpoints based on viewport width (R3F viewport units, not pixels)
     let scale = 1;
-    let posY = viewport.height * 0.2;
+    let posY = viewport.height * 0.1;
 
     if (viewport.width < 10) {
         // Mobile 
@@ -24,11 +24,11 @@ function Hero3DText() {
     } else if (viewport.width < 15) {
         // Tablet
         scale = 0.7;
-        posY = viewport.height * 0.18;
+        posY = viewport.height * 0.12;
     } else {
         // Desktop
         scale = 0.9;
-        posY = viewport.height * 0.22;
+        posY = viewport.height * 0.1;
     }
 
     return (
