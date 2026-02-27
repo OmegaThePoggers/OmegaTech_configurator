@@ -9,6 +9,42 @@ import { R3FPixelBlast } from './R3FPixelBlast';
 import { easing } from 'maath';
 import { usePathname } from 'next/navigation';
 
+// ── Hero 3D Text that gets refracted ───────────────────
+function Hero3DText() {
+    const { viewport } = useThree();
+    const isMobile = viewport.width < 5;
+    const scale = isMobile ? 0.6 : 1;
+
+    return (
+        <group position={[0, viewport.height * 0.2, -2]} scale={scale}>
+            <Text
+                font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
+                fontSize={1.2}
+                letterSpacing={-0.05}
+                anchorX="center"
+                anchorY="middle"
+                color="#ffffff"
+            >
+                OmegaTech
+                <meshBasicMaterial color="#ffffff" toneMapped={false} />
+            </Text>
+            <Text
+                position={[0, -1.0, 0]}
+                font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
+                fontSize={0.45}
+                letterSpacing={0.2}
+                anchorX="center"
+                anchorY="middle"
+                color="#e4e4e7"
+            >
+                PC CONFIGURATOR
+                <meshBasicMaterial color="#e4e4e7" toneMapped={false} />
+            </Text>
+        </group>
+    );
+}
+
+
 // ── Glass Lens that follows the pointer ────────────────
 function GlassLens() {
     const meshRef = useRef<THREE.Mesh>(null!);
@@ -135,6 +171,7 @@ export function FluidCursor() {
                     edgeFade={0.25}
                 />
                 <Environment preset="city" />
+                <Hero3DText />
                 <GlassLens />
             </Canvas>
         </div>

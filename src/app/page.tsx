@@ -10,10 +10,12 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center flex-grow">
       {/* Hero Section */}
-      <section className="w-full py-24 px-4 text-center relative overflow-hidden min-h-[500px]">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-500 drop-shadow-sm relative z-10">
+      <section className="w-full py-24 px-4 text-center relative overflow-hidden min-h-[500px] flex flex-col justify-center items-center">
+        <h1 className="sr-only">
           OmegaTech PC Configurator
         </h1>
+        {/* Added fake spacing to account for the 3D text rendered by FluidCursor */}
+        <div className="h-40 md:h-48 w-full pointer-events-none" />
         <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
           Build your dream gaming PC with cutting-edge components and real-time compatibility checks.
         </p>
