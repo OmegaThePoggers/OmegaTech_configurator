@@ -4,7 +4,8 @@
 import * as THREE from 'three';
 import { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { MeshTransmissionMaterial, Text, Environment, Grid } from '@react-three/drei';
+import { MeshTransmissionMaterial, Text, Environment } from '@react-three/drei';
+import LightPillar from './LightPillar';
 import { easing } from 'maath';
 import { usePathname } from 'next/navigation';
 
@@ -112,6 +113,22 @@ export function FluidCursor() {
 
     return (
         <div className="absolute inset-0 z-0" style={{ pointerEvents: 'none' }}>
+            <div className="absolute inset-0 z-[-1]">
+                <LightPillar
+                    topColor="#5227FF"
+                    bottomColor="#FF9FFC"
+                    intensity={1}
+                    rotationSpeed={0.3}
+                    glowAmount={0.002}
+                    pillarWidth={3}
+                    pillarHeight={0.4}
+                    noiseIntensity={0.5}
+                    pillarRotation={25}
+                    interactive={false}
+                    mixBlendMode="screen"
+                    quality="high"
+                />
+            </div>
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 15 }}
                 gl={{ alpha: true }}
@@ -119,20 +136,6 @@ export function FluidCursor() {
                 eventSource={eventSource || undefined}
                 eventPrefix="client"
             >
-                {/* 3D Grid for Refraction */}
-                <Grid
-                    position={[0, 0, -5]}
-                    args={[50, 50]}
-                    cellSize={0.5}
-                    cellThickness={1}
-                    cellColor="#ffffff10"
-                    sectionSize={2.5}
-                    sectionThickness={1.5}
-                    sectionColor="#ffffff15"
-                    fadeDistance={30}
-                    fadeStrength={1}
-                    rotation={[Math.PI / 2, 0, 0]}
-                />
                 <Environment preset="city" />
                 <GlassLens />
             </Canvas>
