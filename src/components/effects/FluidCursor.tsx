@@ -27,7 +27,7 @@ function GlassLens() {
         meshRef.current.rotation.z += delta * 0.1;
 
         // Target scale for home page
-        const targetScale = 0.19;
+        const targetScale = 0.1425;
         easing.damp3(meshRef.current.scale, [targetScale, targetScale, targetScale], 0.2, delta);
     });
 
