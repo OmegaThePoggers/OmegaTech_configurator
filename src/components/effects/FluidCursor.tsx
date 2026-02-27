@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { MeshTransmissionMaterial, Text, Environment } from '@react-three/drei';
-import { R3FLightPillar } from './R3FLightPillar';
+import PixelBlast from './PixelBlast';
 import { easing } from 'maath';
 import { usePathname } from 'next/navigation';
 
@@ -113,6 +113,27 @@ export function FluidCursor() {
 
     return (
         <div className="absolute inset-0 z-0" style={{ pointerEvents: 'none' }}>
+            <div className="absolute inset-0 z-[-1]" style={{ pointerEvents: 'none' }}>
+                <PixelBlast
+                    variant="square"
+                    pixelSize={4}
+                    color="#B19EEF"
+                    patternScale={2}
+                    patternDensity={1}
+                    pixelSizeJitter={0}
+                    enableRipples
+                    rippleSpeed={0.4}
+                    rippleThickness={0.12}
+                    rippleIntensityScale={1.5}
+                    liquid={false}
+                    liquidStrength={0.12}
+                    liquidRadius={1.2}
+                    liquidWobbleSpeed={5}
+                    speed={0.5}
+                    edgeFade={0.25}
+                    transparent
+                />
+            </div>
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 15 }}
                 gl={{ alpha: true, antialias: false }}
@@ -120,18 +141,6 @@ export function FluidCursor() {
                 eventSource={eventSource || undefined}
                 eventPrefix="client"
             >
-                <R3FLightPillar
-                    topColor="#5227FF"
-                    bottomColor="#FF9FFC"
-                    intensity={1.0}
-                    rotationSpeed={0.3}
-                    glowAmount={0.002}
-                    pillarWidth={4.5}
-                    pillarHeight={0.4}
-                    noiseIntensity={0.5}
-                    pillarRotation={50}
-                    interactive={false}
-                />
                 <Environment preset="city" />
                 <GlassLens />
             </Canvas>
