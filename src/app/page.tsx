@@ -11,11 +11,16 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center flex-grow">
       {/* Hero Section */}
       <section className="w-full py-24 px-4 text-center relative overflow-hidden min-h-[500px] flex flex-col justify-center items-center">
-        <h1 className="sr-only">
-          OmegaTech PC Configurator
-        </h1>
-        {/* Responsive spacer roughly the size of the original h1 text */}
-        <div className="h-20 md:h-28 w-full pointer-events-none flex-shrink-0" />
+        {/* Invisible DOM element that drives the 3D Text positioning.
+            This ensures perfect layout flow without arbitrary gaps. */}
+        <div id="hero-title" className="text-center opacity-0 select-none pointer-events-none mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
+            OmegaTech
+          </h1>
+          <span className="text-lg md:text-2xl tracking-[0.2em] font-medium mt-2 block">
+            PC CONFIGURATOR
+          </span>
+        </div>
         <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
           Build your dream gaming PC with cutting-edge components and real-time compatibility checks.
         </p>

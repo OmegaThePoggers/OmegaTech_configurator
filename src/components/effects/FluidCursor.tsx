@@ -11,31 +11,56 @@ import { usePathname } from 'next/navigation';
 
 // ── Hero 3D Text that gets refracted ───────────────────
 function Hero3DText() {
-    const { viewport } = useThree();
+    const { viewport, size, camera } = useThree();
+    const groupRef = useRef<THREE.Group>(null!);
 
-    // Scale breakpoints based on viewport width (R3F viewport units, not pixels)
+    useFrame(() => {
+        const el = document.getElementById('hero-title');
+        if (el && groupRef.current) {
+            const rect = el.getBoundingClientRect();
+            // Center of the DOM element in pixels
+            const pxX = rect.left + rect.width / 2;
+            const pxY = rect.top + rect.height / 2;
+
+            // Normalized Device Coordinates (-1 to 1)
+            const ndcX = (pxX / size.width) * 2 - 1;
+            const ndcY = -(pxY / size.height) * 2 + 1;
+
+            // Unproject to the Z-plane of the text group (-2)
+            const vec = new THREE.Vector3(ndcX, ndcY, 0.5);
+            vec.unproject(camera);
+
+            const dir = vec.sub(camera.position).normalize();
+            // calculate collision with z=-2 plane
+            const distance = (-2 - camera.position.z) / dir.z;
+            const pos = camera.position.clone().add(dir.multiplyScalar(distance));
+
+            // Match the screen position
+            groupRef.current.position.x = pos.x;
+
+            // Add a small manual offset to align font visual baseline
+            groupRef.current.position.y = pos.y + 0.15;
+        }
+    });
+
+    // Scale breakpoints based on viewport width (R3F viewport units)
     let scale = 1;
-    let posY = viewport.height * 0.1;
-
     if (viewport.width < 10) {
         // Mobile 
         scale = 0.5;
-        posY = viewport.height * 0.15;
     } else if (viewport.width < 15) {
         // Tablet
-        scale = 0.7;
-        posY = viewport.height * 0.12;
+        scale = 0.65;
     } else {
         // Desktop
-        scale = 0.9;
-        posY = viewport.height * 0.1;
+        scale = 0.8;
     }
 
     return (
-        <group position={[0, posY, -2]} scale={scale}>
+        <group ref={groupRef} position={[0, 0, -2]} scale={scale}>
             <Text
                 font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
-                fontSize={1.4}
+                fontSize={0.8}
                 letterSpacing={-0.05}
                 anchorX="center"
                 anchorY="middle"
@@ -45,9 +70,9 @@ function Hero3DText() {
                 <meshBasicMaterial color="#ffffff" toneMapped={false} />
             </Text>
             <Text
-                position={[0, -1.1, 0]}
+                position={[0, -0.65, 0]}
                 font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
-                fontSize={0.4}
+                fontSize={0.25}
                 letterSpacing={0.25}
                 anchorX="center"
                 anchorY="middle"
