@@ -12,14 +12,30 @@ import { usePathname } from 'next/navigation';
 // ── Hero 3D Text that gets refracted ───────────────────
 function Hero3DText() {
     const { viewport } = useThree();
-    const isMobile = viewport.width < 5;
-    const scale = isMobile ? 0.6 : 1;
+
+    // Scale breakpoints based on viewport width (R3F viewport units, not pixels)
+    let scale = 1;
+    let posY = viewport.height * 0.2;
+
+    if (viewport.width < 10) {
+        // Mobile 
+        scale = 0.5;
+        posY = viewport.height * 0.15;
+    } else if (viewport.width < 15) {
+        // Tablet
+        scale = 0.7;
+        posY = viewport.height * 0.18;
+    } else {
+        // Desktop
+        scale = 0.9;
+        posY = viewport.height * 0.22;
+    }
 
     return (
-        <group position={[0, viewport.height * 0.2, -2]} scale={scale}>
+        <group position={[0, posY, -2]} scale={scale}>
             <Text
                 font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
-                fontSize={1.2}
+                fontSize={1.4}
                 letterSpacing={-0.05}
                 anchorX="center"
                 anchorY="middle"
@@ -29,10 +45,10 @@ function Hero3DText() {
                 <meshBasicMaterial color="#ffffff" toneMapped={false} />
             </Text>
             <Text
-                position={[0, -1.0, 0]}
+                position={[0, -1.1, 0]}
                 font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf"
-                fontSize={0.45}
-                letterSpacing={0.2}
+                fontSize={0.4}
+                letterSpacing={0.25}
                 anchorX="center"
                 anchorY="middle"
                 color="#e4e4e7"
