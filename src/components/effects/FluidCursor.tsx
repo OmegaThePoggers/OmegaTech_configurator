@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { MeshTransmissionMaterial, Text, Environment } from '@react-three/drei';
-import LightPillar from './LightPillar';
+import { R3FLightPillar } from './R3FLightPillar';
 import { easing } from 'maath';
 import { usePathname } from 'next/navigation';
 
@@ -27,7 +27,7 @@ function GlassLens() {
         meshRef.current.rotation.z += delta * 0.1;
 
         // Target scale for home page
-        const targetScale = 0.225;
+        const targetScale = 0.19;
         easing.damp3(meshRef.current.scale, [targetScale, targetScale, targetScale], 0.2, delta);
     });
 
@@ -113,29 +113,25 @@ export function FluidCursor() {
 
     return (
         <div className="absolute inset-0 z-0" style={{ pointerEvents: 'none' }}>
-            <div className="absolute inset-0 z-[-1]">
-                <LightPillar
-                    topColor="#5227FF"
-                    bottomColor="#FF9FFC"
-                    intensity={1}
-                    rotationSpeed={0.3}
-                    glowAmount={0.002}
-                    pillarWidth={3}
-                    pillarHeight={0.4}
-                    noiseIntensity={0.5}
-                    pillarRotation={25}
-                    interactive={false}
-                    mixBlendMode="screen"
-                    quality="high"
-                />
-            </div>
             <Canvas
                 camera={{ position: [0, 0, 20], fov: 15 }}
-                gl={{ alpha: true }}
+                gl={{ alpha: true, antialias: false }}
                 style={{ background: 'transparent' }}
                 eventSource={eventSource || undefined}
                 eventPrefix="client"
             >
+                <R3FLightPillar
+                    topColor="#5227FF"
+                    bottomColor="#FF9FFC"
+                    intensity={1.0}
+                    rotationSpeed={0.3}
+                    glowAmount={0.002}
+                    pillarWidth={3.0}
+                    pillarHeight={0.4}
+                    noiseIntensity={0.5}
+                    pillarRotation={25}
+                    interactive={false}
+                />
                 <Environment preset="city" />
                 <GlassLens />
             </Canvas>
