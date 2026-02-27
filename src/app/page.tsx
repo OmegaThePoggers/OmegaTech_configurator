@@ -21,7 +21,7 @@ export default function Home() {
             PC CONFIGURATOR
           </span>
         </div>
-        <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
+        <p className="text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto mb-10 leading-relaxed relative z-10">
           Build your dream gaming PC with cutting-edge components and real-time compatibility checks.
         </p>
         <Button size="lg" className="h-14 px-8 text-lg bg-zinc-50 text-zinc-950 hover:bg-zinc-200 relative z-10" asChild>
