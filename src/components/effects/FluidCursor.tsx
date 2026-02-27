@@ -126,10 +126,10 @@ export function FluidCursor() {
                     intensity={1.0}
                     rotationSpeed={0.3}
                     glowAmount={0.002}
-                    pillarWidth={3.0}
+                    pillarWidth={4.5}
                     pillarHeight={0.4}
                     noiseIntensity={0.5}
-                    pillarRotation={25}
+                    pillarRotation={50}
                     interactive={false}
                 />
                 <Environment preset="city" />
