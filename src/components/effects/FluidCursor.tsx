@@ -200,7 +200,7 @@ export function FluidCursor() {
                 <R3FPixelBlast
                     variant="square"
                     pixelSize={4}
-                    color="#B19EEF"
+                    color="#10b981" // Change color here
                     patternScale={2}
                     patternDensity={1}
                     pixelSizeJitter={0}
