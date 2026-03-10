@@ -118,7 +118,7 @@ function GlassLens() {
                     transmission={1}
                     roughness={0}
                     thickness={3}
-                    ior={1.05}
+                    ior={0.95}
                     chromaticAberration={0.06}
                     anisotropy={0.1}
                     distortion={0.2}
