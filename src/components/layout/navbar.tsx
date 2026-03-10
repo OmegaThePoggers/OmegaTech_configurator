@@ -31,6 +31,9 @@ export function Navbar() {
                     </div>
                 </div>
                 <div className="flex items-center space-x-4">
+                    <Link href="/testimonials" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors">
+                        Testimonials
+                    </Link>
                     <Link href="/contact" className="hidden md:block text-sm font-medium text-zinc-400 hover:text-zinc-50 transition-colors">
                         Contact
                     </Link>
